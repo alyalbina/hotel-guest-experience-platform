@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A research-led hospitality product case by Albina Urubkina: guest research, service design, business analysis and a working service-operations prototype.">
+  <meta name="theme-color" content="#f7f8f3">
+  <title>Redesigning the Hotel Guest Experience · Albina Urubkina</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script src="case-study.js" defer></script>
+</head>
+<body id="top">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <a class="wordmark" href="#top" aria-label="Albina Urubkina, back to top">AU<span>Albina Urubkina</span></a>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="page-nav">Menu <span aria-hidden="true">+</span></button>
+  <nav id="page-nav" aria-label="Case study navigation">
+    <a href="#challenge">Challenge</a><a href="#research">Research</a><a href="#decisions">Decisions</a><a href="#product">Product</a><a href="#validation">Evidence</a>
+    <a class="nav-demo" href="../demo/">Try the demo <span aria-hidden="true">↗</span></a>
+  </nav>
+  <div class="read-progress" aria-hidden="true"><span></span></div>
+</header>
+<main id="main">
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> HOSPITALITY TECH / PRODUCT CASE 01</p>
+      <h1 id="hero-title">Redesigning<br>the hotel<br><span>guest experience.</span></h1>
+      <p class="hero-intro">From fragmented service requests to one connected operations workspace.</p>
+      <div class="hero-actions"><a class="button primary" href="../demo/">View interactive demo <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/alyalbina/hotel-guest-experience-platform">Explore GitHub <span aria-hidden="true">↗</span></a></div>
+      <dl class="project-meta">
+        <div><dt>My focus</dt><dd>Research · Product decisions · Business &amp; system analysis</dd></div>
+        <div><dt>Period</dt><dd>HSE University thesis, 2024<br>Portfolio reconstruction, 2026</dd></div>
+        <div><dt>Approach</dt><dd>Service design · Requirements · Python · SQL</dd></div>
+      </dl>
+    </div>
+    <figure class="hero-product">
+      <div class="screen-label"><span>GUESTFLOW / STAFF WORKSPACE</span><span class="tag">Working prototype</span></div>
+      <button class="screenshot hero-shot" data-zoom="../screenshots/inbox.png" data-caption="Actual staff request inbox. All guest records and metrics shown are synthetic." aria-label="Enlarge the staff request inbox screenshot">
+        <span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>guestflow / operations</span><b>↗</b></span>
+        <img src="../screenshots/inbox.png" width="1440" height="1620" fetchpriority="high" alt="Guestflow staff inbox with department filters, response metrics and a table of fictional guest requests.">
+        <span class="zoom-hint" aria-hidden="true">Expand screen ↗</span>
+      </button>
+      <figcaption><span class="caption-line"></span>Real application screen. Synthetic data. No hotel rollout claimed.</figcaption>
+      <div class="hero-principle"><span class="mini-label">THE CORE DESIGN DECISION</span><p>A request should keep its context<br><strong>from the guest to the person who acts.</strong></p></div>
+    </figure>
+  </section>
+
+  <section class="proof-strip wrap" aria-label="Project at a glance">
+    <div><strong>182</strong><span>questionnaires<br><small>reported in the thesis</small></span></div>
+    <div><strong>9 / 23</strong><span>service categories / options<br><small>adapted from the original catalog</small></span></div>
+    <div><strong>34</strong><span>automated tests passed<br><small>plus browser workflow checks</small></span></div>
+    <div class="proof-outcome"><span class="mini-label">WHAT THIS CASE DEMONSTRATES</span><p>Problem → evidence → decisions<br>→ a working, measurable prototype.</p></div>
+  </section>
+
+  <div class="reader-note wrap"><span>For a two-minute overview</span><p>Start with the challenge, explore one decision, then try the product. Source artifacts sit behind each section.</p><a href="#decisions">Jump to decisions <span aria-hidden="true">↓</span></a></div>
+
+  <section id="challenge" class="section wrap" aria-labelledby="challenge-title">
+    <div class="section-head"><p class="eyebrow">01 / THE CHALLENGE</p><h2 id="challenge-title">The request was simple.<br>The handoff wasn’t.</h2></div>
+    <div class="challenge-layout">
+      <p class="lead">A guest calls reception. Reception relays the request. Another department takes over. Context and responsibility can disappear between those steps.</p>
+      <div class="challenge-lines">
+        <div><span>01</span><h3>Effort for the guest</h3><p>Phone and reception friction; repeated requests; limited visibility into what happens next.</p></div>
+        <div><span>02</span><h3>Ambiguity for the team</h3><p>Manual handoffs make it harder to retain details, identify an owner and report completion.</p></div>
+        <div><span>03</span><h3>A partial view for managers</h3><p>Without a consistent operational record, demand and delays are difficult to review.</p></div>
+      </div>
+    </div>
+    <div class="scope-line"><span>Involved</span><p>Guests · Reception · Department staff · Service managers · Analysts</p><a class="source-link" href="https://github.com/alyalbina/hotel-guest-experience-platform/blob/main/docs/brd.md">Business context ↗</a></div>
+    <p class="source-note">Themes reported in the Novotel Moscow thesis, pp. 24–26. Their frequency and operational cost were not independently measured.</p>
+  </section>
+
+  <section id="research" class="section research-section" aria-labelledby="research-title">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">02 / RESEARCH &amp; DISCOVERY</p><h2 id="research-title">Understand the service.<br>Before designing the system.</h2><p class="section-intro">Quantitative research, interviews and service-design artifacts informed the original problem definition.</p></div>
+      <div class="research-layout">
+        <div class="research-number"><strong>182<span>completed<br>questionnaires</span></strong><p>Thesis-reported sample, 2024.<br>Raw responses are unavailable.</p><a class="source-link" href="https://github.com/alyalbina/hotel-guest-experience-platform/blob/main/docs/research.md">Research &amp; evidence limits ↗</a></div>
+        <div class="research-methods"><div><span class="method-index">01</span><h3>Listen</h3><p>Guest interviews and online-review analysis; affinity grouping to identify service themes. Completed interview count is not preserved.</p></div><div><span class="method-index">02</span><h3>Map</h3><p>CJM and Service Blueprint to connect guest touchpoints with frontstage and backstage work.</p></div><div><span class="method-index">03</span><h3>Define</h3><p>Stakeholder analysis, AS-IS / TO-BE and requirements to narrow the opportunity to request handling.</p></div></div>
+      </div>
+      <div class="research-themes"><p class="mini-label">RECONSTRUCTED THEME MAP / QUALITATIVE, NOT A FREQUENCY CHART</p><div><span>Access to service</span><span>Execution delays</span><span>Information flow</span><span>Operational visibility</span></div></div>
+      <details class="evidence-details"><summary>View historical NPS, CSAT and CES reporting <span aria-hidden="true">+</span></summary><div class="historical-metrics"><div><span>NPS</span><strong>−2.34</strong><p>Reported as an “average”; calculation and promoter/detractor counts unavailable.</p></div><div><span>CSAT</span><strong>3.02 <small>/ 5</small></strong><p>Reported mean score, not a satisfied-response percentage.</p></div><div><span>CES</span><strong>3.48 <small>/ 7</small></strong><p>Question wording and scale direction unavailable; no directional interpretation.</p></div></div><p class="source-note">Thesis-reported aggregates, not independently recomputed and not before/after results. These values are separate from the synthetic product analytics below.</p></details>
+    </div>
+  </section>
+
+  <section id="decisions" class="section wrap" aria-labelledby="decisions-title">
+    <div class="section-head"><p class="eyebrow">03 / FROM INSIGHT TO PRODUCT DECISION</p><h2 id="decisions-title">Every feature needed<br>a reason to exist.</h2><p class="section-intro">Select a finding to trace the reasoning from a reported problem to an implemented response.</p></div>
+    <div class="decision-layout">
+      <div class="decision-selectors" role="tablist" aria-label="Research findings" aria-orientation="vertical">
+        <button id="finding-context" role="tab" aria-selected="true" aria-controls="decision-panel" data-finding="context"><span>01</span><strong>Lost context</strong><small>Requests disappear in handoffs</small><b aria-hidden="true">↗</b></button>
+        <button id="finding-ownership" role="tab" aria-selected="false" aria-controls="decision-panel" tabindex="-1" data-finding="ownership"><span>02</span><strong>Unclear ownership</strong><small>Responsibility is hard to see</small><b aria-hidden="true">↗</b></button>
+        <button id="finding-access" role="tab" aria-selected="false" aria-controls="decision-panel" tabindex="-1" data-finding="access"><span>03</span><strong>Guest effort</strong><small>Asking for help has friction</small><b aria-hidden="true">↗</b></button>
+        <button id="finding-visibility" role="tab" aria-selected="false" aria-controls="decision-panel" tabindex="-1" data-finding="visibility"><span>04</span><strong>Limited visibility</strong><small>Managers lack an operating view</small><b aria-hidden="true">↗</b></button>
+      </div>
+      <div id="decision-panel" class="decision-panel" role="tabpanel" aria-labelledby="finding-context" tabindex="0">
+        <p class="mini-label">THE PRODUCT REASONING</p><h3 id="decision-title">Keep the request intact.</h3>
+        <ol class="reasoning-chain"><li><span>Research finding</span><p id="decision-finding">Requests can be lost during manual departmental handoffs.</p></li><li><span>User pain point</span><p id="decision-pain">Guests repeat information; staff receive incomplete context.</p></li><li><span>Product hypothesis</span><p id="decision-hypothesis">A shared, durable record may reduce missed or repeated requests.</p></li><li class="implemented"><span>Design decision</span><p id="decision-design">Persist a request ID and timestamped event history; confirm only after saving.</p></li><li><span>Expected outcome</span><p id="decision-outcome">More traceable service. Validate missed requests and repeat contacts in a pilot.</p></li></ol>
+        <p class="decision-boundary" id="decision-boundary">Implemented in the 2026 rebuild. The operational improvement remains unvalidated.</p>
+        <a id="decision-source" class="source-link" href="https://github.com/alyalbina/hotel-guest-experience-platform/blob/main/docs/user-stories.md">Acceptance criteria &amp; verification ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="design" class="section design-section" aria-labelledby="design-title">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">04 / SERVICE &amp; SYSTEM DESIGN</p><h2 id="design-title">Connect the guest journey<br>to the work behind it.</h2><p class="section-intro">Selected models, each tied to a decision. These are current English reconstructions, not the lost original boards.</p></div>
+      <div class="tab-bar" role="tablist" aria-label="Design artifacts"><button id="artifact-journey" role="tab" aria-selected="true" aria-controls="panel-journey" data-tab="journey">Guest journey</button><button id="artifact-blueprint" role="tab" aria-selected="false" aria-controls="panel-blueprint" data-tab="blueprint" tabindex="-1">Service blueprint</button><button id="artifact-process" role="tab" aria-selected="false" aria-controls="panel-process" data-tab="process" tabindex="-1">AS-IS / TO-BE</button><button id="artifact-system" role="tab" aria-selected="false" aria-controls="panel-system" data-tab="system" tabindex="-1">System &amp; data</button></div>
+      <div class="artifact-stage">
+        <div id="panel-journey" role="tabpanel" aria-labelledby="artifact-journey" tabindex="0">
+          <div class="artifact-caption"><h3>Focus the MVP on requesting service.</h3><p>The broader journey spans booking to post-stay review. This product addresses the request portion, not the entire hotel experience.</p></div>
+          <ol class="journey-stages"><li><span>01</span><h4>Booking</h4><p>Understand the stay</p><small>Outside MVP</small></li><li><span>02</span><h4>Check-in</h4><p>Arrive and access room</p><small>Room is self-reported</small></li><li class="focus-stage"><span>03</span><h4>Service request</h4><p>Ask → track → receive</p><small>Primary product scope</small></li><li><span>04</span><h4>Check-out</h4><p>Depart smoothly</p><small>Outside MVP</small></li><li><span>05</span><h4>Follow-up</h4><p>Give service feedback</p><small>Per-request CSAT</small></li></ol>
+          <div class="artifact-takeaway"><span>Decision enabled</span><p>Prioritize intake, handoffs and status visibility. Keep reservations, payments and check-in verification outside the prototype.</p></div><a class="source-link" href="https://github.com/alyalbina/hotel-guest-experience-platform/blob/main/docs/customer-journey.md">Full CJM and evidence ↗</a>
+        </div>
+        <div id="panel-blueprint" role="tabpanel" aria-labelledby="artifact-blueprint" tabindex="0" hidden>
+          <div class="artifact-caption"><h3>Make the handoff visible across layers.</h3><p>A focused TO-BE blueprint of the demonstrated service workflow.</p></div>
+          <div class="table-region" tabindex="0" role="region" aria-label="Service blueprint table, horizontally scrollable on smaller screens"><table class="blueprint"><thead><tr><th scope="col">Layer</th><th scope="col">Capture</th><th scope="col">Triage</th><th scope="col">Fulfill</th><th scope="col">Follow up</th></tr></thead><tbody><tr><th scope="row">Guest</th><td>Submit details</td><td>Wait / check status</td><td>Receive service</td><td>Rate resolved request</td></tr><tr><th scope="row">Frontstage</th><td>Telegram confirmation</td><td>Staff inbox &amp; assignment</td><td>Staff record progress</td><td>Status lookup / CSAT</td></tr><tr class="backstage-row"><th scope="row">Backstage</th><td>Request + event transaction</td><td>Department &amp; role checks</td><td>Validated state changes</td><td>Rating rules &amp; history</td></tr><tr><th scope="row">Support</th><td>Catalog / room configuration</td><td>Staff procedures</td><td>Durable storage</td><td>Metrics &amp; review</td></tr></tbody></table></div>
+          <div class="artifact-takeaway"><span>Decision enabled</span><p>A saved bot message is not a human response. Staff acknowledgement has its own timestamp, and physical service still depends on hotel operations.</p></div><a class="source-link" href="https://github.com/alyalbina/hotel-guest-experience-platform/blob/main/docs/service-blueprint.md">Full blueprint and failure controls ↗</a>
+        </div>
+        <div id="panel-process" role="tabpanel" aria-labelledby="artifact-process" tabindex="0" hidden>
+          <div class="artifact-caption"><h3>Replace ambiguous handoffs with explicit states.</h3><p>Compare the thesis-derived manual process with the current implementation.</p></div>
+          <div class="process-comparison"><div><span class="mini-label">AS-IS / MANUAL</span><ol><li>Guest phones or visits reception</li><li>Reception accepts and relays details</li><li>Department performs service</li><li>Completion is reported manually</li></ol><p>Abandonment and repeated contacts appear in the source model; their frequency is unknown.</p></div><div><span class="mini-label">TO-BE / CURRENT PROTOTYPE</span><ol><li>Guest submits structured details</li><li>Request + event commit before confirmation</li><li>Eligible staff assign and acknowledge</li><li>Progress, resolve or reopen with a reason</li></ol><p>One durable record across the handoff, with explicit responsibility and history.</p></div></div>
+          <div class="artifact-takeaway"><span>Decision enabled</span><p>Model acknowledgement, progress, resolution and reopening separately; prevent arbitrary status edits and silent concurrent overwrites.</p></div><a class="source-link" href="https://github.com/alyalbina/hotel-guest-experience-platform/blob/main/docs/processes.md">Processes ↗</a><a class="source-link adjacent-link" href="https://github.com/alyalbina/hotel-guest-experience-platform/blob/main/docs/diagrams/state.puml">State UML source ↗</a>
+        </div>
+        <div id="panel-system" role="tabpanel" aria-labelledby="artifact-system" tabindex="0" hidden>
+          <div class="artifact-caption"><h3>One operational source of truth.</h3><p>The bot and staff API share the same domain service and SQLite database. Optional Sheets export sits outside the intake path.</p></div>
+          <div class="system-layout"><img src="../diagrams/architecture.svg" width="1120" height="600" loading="lazy" alt="Guest Telegram bot and staff FastAPI converge on a Python domain service and SQLite. Google Sheets is an optional snapshot; static preview uses synthetic browser data."><div class="data-outline"><span class="mini-label">SELECTED DATA RELATIONSHIPS</span><dl><div><dt>Guest → Requests</dt><dd>A guest can submit multiple requests.</dd></div><div><dt>Department → Requests</dt><dd>Category supplies routing; staff assignment stays explicit.</dd></div><div><dt>Request → Events</dt><dd>Creation and subsequent actions retain timestamps and context.</dd></div></dl><p>Version checks protect simultaneous edits. This is an operational history, not a tamper-proof ledger.</p></div></div>
+          <div class="artifact-takeaway"><span>Decision enabled</span><p>Keep intake working during a Sheets outage. Use a lean, build-free stack suited to a single-hotel demonstrator.</p></div><a class="source-link" href="https://github.com/alyalbina/hotel-guest-experience-platform/blob/main/docs/architecture.md">Architecture decisions ↗</a><a class="source-link adjacent-link" href="https://github.com/alyalbina/hotel-guest-experience-platform/blob/main/docs/data-model.md">ERD ↗</a><a class="source-link adjacent-link" href="https://github.com/alyalbina/hotel-guest-experience-platform/blob/main/docs/uml.md">Seven UML views ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="product" class="section wrap" aria-labelledby="product-title">
+    <div class="section-head"><p class="eyebrow">05 / THE PRODUCT</p><h2 id="product-title">Less effort to ask.<br>More clarity to act.</h2><p class="section-intro">A Telegram guest flow and a reconstructed staff workspace. Explore the demonstrated capabilities.</p></div>
+    <div class="tab-bar" role="tablist" aria-label="Product scenarios"><button id="scenario-staff" role="tab" aria-selected="true" aria-controls="panel-staff" data-tab="staff">Staff experience</button><button id="scenario-guest" role="tab" aria-selected="false" aria-controls="panel-guest" data-tab="guest" tabindex="-1">Guest experience</button></div>
+    <div id="panel-staff" class="product-scenario" role="tabpanel" aria-labelledby="scenario-staff" tabindex="0">
+      <div class="staff-copy"><span class="tag">Reconstructed workflow · new web implementation</span><h3>Know what needs action.<br>And who owns it.</h3><ol class="compact-steps"><li><span>01</span><p><strong>Find the right work</strong>Search and filter by department, status and creation date.</p></li><li><span>02</span><p><strong>Assign &amp; acknowledge</strong>Select an eligible employee and record first staff response.</p></li><li><span>03</span><p><strong>Act with context</strong>Progress, resolve or reopen while retaining event history.</p></li></ol><a class="text-link" href="../demo/">Try the staff workspace ↗</a></div>
+      <figure class="product-image"><button class="screenshot" data-zoom="../screenshots/request-history.png" data-caption="Actual request drawer with assignment, status transitions and event history. Synthetic data." aria-label="Enlarge request history screenshot"><img src="../screenshots/request-history.png" width="1440" height="1100" loading="lazy" alt="Actual staff workspace with request details, employee assignment, next-status selection and timestamped history."><span class="zoom-hint" aria-hidden="true">Expand screen ↗</span></button><figcaption>Actual web application · all displayed records are fictional.</figcaption></figure>
+    </div>
+    <div id="panel-guest" class="product-scenario guest-scenario" role="tabpanel" aria-labelledby="scenario-guest" tabindex="0" hidden>
+      <div><span class="tag">Original channel concept · migrated bot</span><h3>Ask from the room.<br>Retrieve the status later.</h3><p class="scenario-intro">The original Telegram concept is preserved. Status lookup and service ratings are additions in the 2026 rebuild.</p><p class="source-note">Flow reconstructed from current bot code, not a captured Telegram session. Dispatch is tested offline; live delivery still needs new credentials.</p><a class="source-link" href="https://github.com/alyalbina/hotel-guest-experience-platform/blob/main/app/bot.py">Inspect the bot implementation ↗</a></div>
+      <ol class="guest-flow"><li><span>01</span><div><h4>Register</h4><p>Room and name. Room entry is self-reported, not check-in verification.</p></div></li><li><span>02</span><div><h4>Choose &amp; describe</h4><p>Select a category and service; add timing or preferences.</p></div></li><li><span>03</span><div><h4>Receive a saved request ID</h4><p>Confirmation follows a successful database commit.</p></div></li><li><span>04</span><div><h4>Check &amp; rate</h4><p><code>/requests</code> for status; <code>/rate ID SCORE</code> after resolution.</p></div></li></ol>
+    </div>
+    <div class="product-boundary"><span>Deliberate scope</span><p>The service catalog creates requests. It does not guarantee bookings, payments or physical fulfillment. Proactive guest notifications and PMS integration remain planned.</p></div>
+  </section>
+
+  <section id="analytics" class="section analytics-section" aria-labelledby="analytics-title">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">06 / PRODUCT ANALYTICS</p><h2 id="analytics-title">Measure the service.<br>Not just the number of tickets.</h2><p class="section-intro">Pair speed with completion, reopens and guest feedback. Each metric answers a different operational question.</p></div>
+      <p class="synthetic-note"><span class="status-dot" aria-hidden="true"></span><strong>Synthetic demo data</strong><span>96 fictional requests · fixed cohort as of 8 Oct 2026, 18:00 UTC · no measured hotel impact</span></p>
+      <div class="analytics-layout"><div>
+        <div class="metric-selector" role="tablist" aria-label="Metric definitions" aria-orientation="vertical"><button id="metric-response" role="tab" aria-selected="true" aria-controls="metric-panel" data-metric="response"><span>Average response</span><strong>12.1 <small>min</small></strong></button><button id="metric-resolution" role="tab" aria-selected="false" aria-controls="metric-panel" data-metric="resolution" tabindex="-1"><span>Average resolution</span><strong>122.8 <small>min</small></strong></button><button id="metric-sla" role="tab" aria-selected="false" aria-controls="metric-panel" data-metric="sla" tabindex="-1"><span>SLA compliance</span><strong>39.7 <small>%</small></strong></button><button id="metric-completion" role="tab" aria-selected="false" aria-controls="metric-panel" data-metric="completion" tabindex="-1"><span>Completion rate</span><strong>70.8 <small>%</small></strong></button><button id="metric-reopen" role="tab" aria-selected="false" aria-controls="metric-panel" data-metric="reopen" tabindex="-1"><span>Reopen rate</span><strong>10.1 <small>%</small></strong></button><button id="metric-csat" role="tab" aria-selected="false" aria-controls="metric-panel" data-metric="csat" tabindex="-1"><span>Guest CSAT</span><strong>3.9 <small>/ 5</small></strong></button></div>
+        <div id="metric-panel" class="metric-detail" role="tabpanel" aria-labelledby="metric-response" tabindex="0"><span class="mini-label">THE QUESTION BEHIND THE NUMBER</span><h3 id="metric-question">How long until staff acknowledge a request?</h3><p id="metric-formula">Mean time from creation to first staff acknowledgement, across 89 acknowledged requests.</p><p class="metric-caveat" id="metric-caveat">Unacknowledged requests are excluded. Bot confirmation and assignment do not count as staff response.</p></div>
+      </div><figure class="analytics-image"><button class="screenshot" data-zoom="../screenshots/analytics.png" data-caption="Actual analytics dashboard. All values and department distributions are generated synthetic data, not hotel research." aria-label="Enlarge the analytics dashboard screenshot"><img src="../screenshots/analytics.png" width="1440" height="1392" loading="lazy" alt="Actual analytics dashboard showing synthetic workload by department, completion and feedback, and daily request volume."><span class="zoom-hint" aria-hidden="true">Expand dashboard ↗</span></button><figcaption>Number of requests and department demand add workload context.</figcaption><a class="source-link" href="https://github.com/alyalbina/hotel-guest-experience-platform/blob/main/analytics/metrics.sql">SQL definitions ↗</a><a class="source-link adjacent-link" href="https://github.com/alyalbina/hotel-guest-experience-platform/blob/main/docs/metrics.md">Denominators &amp; pilot design ↗</a></figure></div>
+      <div class="measurement-principle"><span>Measurement principle</span><p>Faster closure is not automatically better service.<br><strong>Review reopens, feedback coverage and overdue active work alongside timing.</strong></p></div>
+    </div>
+  </section>
+
+  <section id="validation" class="section wrap" aria-labelledby="validation-title">
+    <div class="section-head"><p class="eyebrow">07 / IMPACT &amp; VALIDATION</p><h2 id="validation-title">A working product.<br>An honest evidence boundary.</h2></div>
+    <div class="validation-grid"><article><p class="mini-label">DELIVERED</p><h3>Research to delivery</h3><ul><li>Research and service-design case</li><li>Requirements, processes and system models</li><li>Runnable bot and staff web workspace</li><li>SQL-backed metric definitions and demo</li></ul><span class="validation-mark">Artifacts &amp; implementation</span></article><article><p class="mini-label">TECHNICALLY VALIDATED</p><h3>Behavior, not impact</h3><ul><li>34 passing automated tests</li><li>Approximately 90% measured app coverage</li><li>Bot dispatch tested with offline transport</li><li>Browser workflows and SQL/Python parity</li><li>GitHub CI and static Pages deployment</li></ul><a class="source-link" href="https://github.com/alyalbina/hotel-guest-experience-platform/blob/main/docs/validation.md">Executed checks &amp; limits ↗</a></article><article><p class="mini-label">NOT YET VALIDATED</p><h3>The hotel outcome</h3><ul><li>Guest satisfaction improvement</li><li>Real response or resolution-time reduction</li><li>Financial return and labor savings</li><li>Production readiness / hotel rollout</li><li>Live Telegram and Google authorization</li></ul><span class="validation-mark">Requires a controlled pilot</span></article></div>
+    <p class="validation-statement">Shipping the workflow proves it can run.<br><span>A hotel pilot must establish whether it helps.</span></p>
+  </section>
+
+  <section id="contribution" class="section contribution-section" aria-labelledby="contribution-title">
+    <div class="wrap contribution-layout"><div><p class="eyebrow">08 / MY CONTRIBUTION</p><h2 id="contribution-title">The thread from<br>problem to product.</h2><p class="section-intro">Albina Urubkina · Business Informatics, HSE University. My strongest contribution is connecting guest needs, operational rules and product decisions.</p><a class="source-link" href="https://github.com/alyalbina/hotel-guest-experience-platform/blob/main/docs/provenance.md">Authorship &amp; provenance ↗</a></div><div class="contribution-timeline"><article><span>2024</span><div><h3>Thesis research &amp; prototype project</h3><p>Customer research, CJM and Service Blueprint; stakeholder analysis; requirements; AS-IS / TO-BE, UX flows, UML and data modeling; prototype design and coordination.</p></div></article><article><span>2026</span><div><h3>Portfolio reconstruction &amp; extension</h3><p>Documented workflows reconstructed as a new staff workspace, explicit request/event model, operational metrics, synthetic demonstration and English case materials.</p></div></article><div class="authorship-note"><strong>Clear attribution.</strong><p>The surviving original bot credits <code>@d_chistikov</code>. I do not claim sole authorship of the original Python code. The 2026 implementation was rebuilt with AI engineering assistance.</p></div></div></div>
+  </section>
+
+  <section id="next" class="section wrap" aria-labelledby="next-title">
+    <div class="section-head"><p class="eyebrow">09 / LESSONS &amp; NEXT STEPS</p><h2 id="next-title">The next release<br>starts in the hotel.</h2></div>
+    <div class="next-layout"><div class="lesson"><span class="mini-label">WHAT THE CASE MAKES CLEAR</span><h3>Software can retain context.<br>Operations must make it true.</h3><p>A button click becomes meaningful service evidence only when staff share clear acknowledgement and closure rules. A queue also cannot fix training, incentives or the physical hotel layout.</p></div><ol class="next-steps"><li><span>01</span><div><h3>Validate the workflow</h3><p>Test guest intake and staff handoffs; confirm channel choice, routing and status semantics.</p></div></li><li><span>02</span><div><h3>Prepare a limited pilot</h3><p>Approve guest identity, access, retention, SLA definitions and fallback procedures.</p></div></li><li><span>03</span><div><h3>Measure the outcome</h3><p>Collect comparable baseline and pilot cohorts. Track timing, reopens, CSAT coverage and overdue work before claiming an improvement.</p></div></li></ol></div>
+    <details class="evidence-details"><summary>Where I would take this in a new market <span aria-hidden="true">+</span></summary><p>Hospitality relevance does not establish Dubai market fit. Guest channel preferences, languages, property systems and staff routines need fresh discovery. Telegram adoption, identity integration and the current single-instance SQLite setup are explicit constraints.</p><a class="source-link" href="https://github.com/alyalbina/hotel-guest-experience-platform/blob/main/docs/roadmap.md">Backlog &amp; roadmap ↗</a></details>
+  </section>
+
+  <section class="closing wrap" aria-labelledby="closing-title"><p class="eyebrow">EXPLORE THE WORK</p><h2 id="closing-title">See the thinking.<br>Try the product.</h2><div><a class="button primary" href="../demo/">Open live demo ↗</a><a class="button secondary" href="https://github.com/alyalbina/hotel-guest-experience-platform">Explore repository ↗</a></div><p>Public demo runs without an account or backend. Synthetic data; changes reset on refresh.</p></section>
+</main>
+<footer class="site-footer wrap"><div><a class="wordmark" href="#top">AU<span>Albina Urubkina</span></a><p>HSE thesis, 2024 / portfolio reconstruction, 2026.<br>Independent case study. No Novotel endorsement or production deployment.</p></div><nav aria-label="Footer links"><a href="https://github.com/alyalbina/hotel-guest-experience-platform">GitHub ↗</a><a href="../demo/">Live demo ↗</a><a href="#top">Back to top ↑</a></nav></footer>
+<dialog id="image-dialog" aria-labelledby="image-caption"><form method="dialog"><button class="dialog-close" aria-label="Close expanded screenshot">Close <span aria-hidden="true">×</span></button></form><p id="image-caption"></p><img id="expanded-image" alt=""></dialog>
+</body>
+</html>
