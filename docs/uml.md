@@ -2,6 +2,8 @@
 
 The thesis contains use-case, class, activity, sequence, state, component and deployment diagrams (T1 pp. 35–53). The sources below are **new editable diagrams for the reconstructed current system**, not claims that every original diagrammed feature ran in 2024. For the old/current architecture and data-model distinctions, read [provenance](provenance.md) and [data model](data-model.md).
 
+Inspect the seven diagrams visually in the [Research & Analysis Atlas](https://alyalbina.github.io/hotel-guest-experience-platform/case-study/artifacts/). The atlas provides simplified current views and links to the full sources below. [Original/current comparison](research-traceability.md) explains which ideas were already designed in the thesis and which safeguards are newly enforced.
+
 | UML type | Editable standard UML source | Scope |
 | --- | --- | --- |
 | Use Case | [use-case.puml](diagrams/use-case.puml) | Guest, manager, agent and analyst capabilities |

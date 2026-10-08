@@ -14,6 +14,7 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGE = ROOT / "docs/case-study/index.html"
+GALLERY = ROOT / "docs/case-study/artifacts/index.html"
 
 
 class References(HTMLParser):
@@ -31,9 +32,9 @@ class References(HTMLParser):
                 self.references.append((field, attributes[field]))
 
 
-def check_local_references():
+def check_local_references(source=PAGE):
     parser = References()
-    parser.feed(PAGE.read_text())
+    parser.feed(source.read_text())
     assert len(parser.ids) == len(set(parser.ids)), "Duplicate HTML IDs"
     for field, value in parser.references:
         parsed = urlsplit(value)
@@ -48,7 +49,7 @@ def check_local_references():
         elif not parsed.path:
             assert parsed.fragment in parser.ids, value
         else:
-            target = PAGE.parent / unquote(parsed.path)
+            target = source.parent / unquote(parsed.path)
             if target.is_dir():
                 target = target / "index.html"
             assert target.is_file(), value
@@ -61,7 +62,7 @@ class QuietHandler(SimpleHTTPRequestHandler):
 
 
 def main():
-    references = check_local_references()
+    references = check_local_references() + check_local_references(GALLERY)
     handler = functools.partial(QuietHandler, directory=str(ROOT / "docs"))
     server = ThreadingHTTPServer(("127.0.0.1", 0), handler)
     thread = threading.Thread(target=server.serve_forever, daemon=True)
@@ -183,6 +184,67 @@ def main():
                 page.screenshot(path=str(artifacts / "mobile.png"))
                 page.screenshot(path=str(artifacts / "mobile-full.png"), full_page=True)
 
+                # Atlas filters and all diagrams, keyboard return and mobile containment.
+                page.locator('.research-atlas-teaser a[href="artifacts/"]').click()
+                assert page.locator(".artifact").count() == 16
+                assert page.locator(".diagram-preview svg").count() == 16
+                for group, amount in (("research", 4), ("business", 4), ("system", 8), ("all", 16)):
+                    page.locator(f'[data-filter="{group}"]').click()
+                    assert page.locator(".artifact:visible").count() == amount
+                    assert page.locator("#artifact-count").inner_text() == f"{amount} artifacts shown"
+                page.locator('[data-filter="research"]').focus()
+                page.keyboard.press("Enter")
+                assert page.locator(".artifact:visible").count() == 4
+                page.locator('[data-filter="all"]').click()
+                for button in page.locator("[data-diagram]").all():
+                    title = button.locator("..").locator("h2").inner_text()
+                    button.click()
+                    assert page.locator("#diagram-dialog").is_visible()
+                    assert page.locator("#diagram-title").inner_text() == title
+                    ids = page.locator("[id]").evaluate_all("els => els.map(e => e.id)")
+                    assert len(ids) == len(set(ids)), "Duplicated SVG marker IDs in dialog"
+                    page.keyboard.press("Tab")
+                    assert page.evaluate("document.activeElement.closest('dialog') !== null")
+                    page.keyboard.press("Escape")
+                    assert button.evaluate("e => e === document.activeElement")
+                clipped = page.locator(".diagram-preview svg").evaluate_all("""svgs => svgs.flatMap(svg => {
+                    const b = svg.viewBox.baseVal;
+                    return [...svg.querySelectorAll('text')].filter(t => {
+                        const r = t.getBBox();
+                        return r.x < -1 || r.x+r.width > b.width+1 || r.y+r.height > b.height+1;
+                    }).map(t => t.textContent);
+                })""")
+                assert clipped == [], ("Text outside diagram viewBox", clipped)
+                for width in widths:
+                    page.set_viewport_size({"width": width, "height": 1060})
+                    assert not page.evaluate("document.documentElement.scrollWidth > innerWidth"), (
+                        "atlas",
+                        width,
+                    )
+                    page.locator('[data-diagram="journey"]').click()
+                    assert not page.evaluate("document.documentElement.scrollWidth > innerWidth"), (
+                        "atlas dialog",
+                        width,
+                    )
+                    assert page.locator("#diagram-canvas").evaluate("e => e.scrollWidth > e.clientWidth") == (
+                        width < 1190
+                    )
+                    page.keyboard.press("Escape")
+                page.set_viewport_size({"width": 1440, "height": 1060})
+                page.goto(url + "artifacts/", wait_until="networkidle")
+                page.screenshot(path=str(artifacts / "atlas-desktop.png"))
+                page.screenshot(path=str(artifacts / "atlas-full.png"), full_page=True)
+                page.locator('[data-diagram="fishbone"]').click()
+                page.screenshot(path=str(artifacts / "atlas-fishbone.png"))
+                page.keyboard.press("Escape")
+                page.set_viewport_size({"width": 390, "height": 1060})
+                page.goto(url + "artifacts/", wait_until="networkidle")
+                page.screenshot(path=str(artifacts / "atlas-mobile.png"))
+                page.locator('[data-filter="system"]').click()
+                page.goto(url + "artifacts/#affinity", wait_until="networkidle")
+                assert page.locator("#affinity").is_visible()
+                page.goto(url, wait_until="networkidle")
+
                 # Existing preview remains reachable with its own relative assets.
                 page.locator(".hero-actions a").first.click()
                 page.wait_for_selector("#request-table tr")
@@ -198,6 +260,7 @@ def main():
                 "keyboard_tabs_menu_dialog_focus": "passed",
                 "reduced_motion": "passed",
                 "existing_demo": "passed",
+                "atlas_filters_16_diagrams_zoom_focus": "passed",
                 "javascript_errors": errors,
                 "failed_resources": failed_resources,
                 "automated_accessibility_audit": "not performed",

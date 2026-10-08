@@ -10,7 +10,7 @@ Validation date: 8 October 2026 (UTC). This report covers the new static portfol
 
 The live case study was opened and checked on GitHub Pages. Decision, Blueprint and SLA controls updated correctly; screenshot enlargement closed with Escape; the demo button opened the existing preview with 96 fictional requests. No site-origin console warnings or errors were observed.
 
-Changes are in **`feat-product-case-study`**, with [Pull Request #1](https://github.com/alyalbina/hotel-guest-experience-platform/pull/1). GitHub Pages serves that branch's `/docs` folder for review; `main` was not changed. The downloaded feature-branch archive contained **91 files**, byte-identical to the prepared public worktree at commit `0ef78f4` (before this report's publication note).
+[Pull Request #1](https://github.com/alyalbina/hotel-guest-experience-platform/pull/1) was merged into `main` at `518850a` after user approval. GitHub Pages was returned to `main/docs`; [main CI](https://github.com/alyalbina/hotel-guest-experience-platform/actions/runs/37852748676) and [Pages deployment](https://github.com/alyalbina/hotel-guest-experience-platform/actions/runs/37852823913) passed. The case was reloaded after deployment and its CTA opened the demo with 96 fictional requests. Before merging, the downloaded feature-branch archive contained **91 files**, byte-identical to the prepared public worktree at commit `0ef78f4` (before the report's publication note).
 
 [CI run #10](https://github.com/alyalbina/hotel-guest-experience-platform/actions/runs/37851920032) passed with the new case-study smoke step. [Pages deployment #4](https://github.com/alyalbina/hotel-guest-experience-platform/actions/runs/37852034091) passed. The PR showed 13 successful checks and no conflicts before this documentation-only publication note; current status remains available on the PR.
 
@@ -92,4 +92,12 @@ The new smoke script serves `docs/` on a temporary local port and stops it after
 - No real hotel pilot or employer/recruiter usability test has been completed. Adoption, handoff delays, guest satisfaction and operational effects require a baseline and a controlled pilot.
 - A LinkedIn profile URL was not supplied, so the footer does not invent one. The prepared Featured and Projects copy is available in `portfolio.md`.
 
-The changes are prepared in a separate branch and pull request. Publication can use that branch's `docs/` folder for review; merging into `main` remains a user-controlled decision. After a merge, GitHub Pages can return to `main` without changing the public URLs.
+## Research expansion
+
+The `feat-research-evidence` update adds a [Research & Analysis Atlas](https://alyalbina.github.io/hotel-guest-experience-platform/case-study/artifacts/), [method/synthesis deep dive](research-deep-dive.md) and [evidence-to-requirement register](research-traceability.md). The main case links to these materials and preserves the original four Affinity Diagram headings rather than substituting editorial product themes.
+
+The atlas contains **16 English visual views**: four research/service-design artifacts, four business-analysis views, seven current UML views and one current ERD. Each includes thesis page references, source treatment, a useful decision and a boundary. It uses inline SVG with local CSS/JS, without a diagram server or additional runtime dependency. Regenerate the committed HTML with `python scripts/build_research_gallery.py`.
+
+Local Chromium checks cover **94** case/atlas asset, source, anchor and control references; all 16 zoom dialogs and unique SVG marker IDs; four filter groups; focus return and keyboard containment; five responsive widths; SVG text staying inside diagram bounds; and the existing demo CTA. JavaScript exceptions and failed local resources were absent. Desktop/mobile and readable diagram views were inspected. Browser verification does not establish a full accessibility audit, a real hotel pilot or independent recomputation of the research.
+
+The original thesis already designed rich states and reopening. New implementation safeguards are labelled separately. Original PDF images, private respondent records and persona portraits are not published; the visuals are English redraws with explicit simplifications, rather than exact copies of the source boards.
