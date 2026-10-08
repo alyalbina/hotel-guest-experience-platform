@@ -4,6 +4,34 @@ Use project/research positioning rather than inventing hotel employment, a produ
 
 ## English CV: general project entry
 
+### Short entry for the visual case study
+
+**Hotel Guest Experience & Service Automation Platform**  
+HSE University thesis, 2024; AI-assisted portfolio reconstruction, 2026
+
+- Translated guest-service research into product decisions, AS-IS/TO-BE processes, requirements, UX flows and system/data models.
+- Reconstructed documented hotel staff workflows as a working web workspace with request ownership, status history and operational analytics.
+- Defined service metrics and SQL logic; presented the research-to-delivery case with a clearly labelled synthetic demo and explicit validation limits.
+
+**Case:** https://alyalbina.github.io/hotel-guest-experience-platform/case-study/  
+**Code:** https://github.com/alyalbina/hotel-guest-experience-platform
+
+### LinkedIn Featured
+
+**Title:** From guest-service research to a working hospitality product
+
+**Description:** An interactive case covering discovery, service design, requirements, system decisions and operational metrics. Based on my 2024 HSE thesis, with an AI-assisted 2026 reconstruction. Includes a working synthetic demo and a clear distinction between technical validation and hotel impact.
+
+### LinkedIn Projects: concise version
+
+**Hotel Guest Experience & Service Automation Platform**
+
+A hospitality product case originating in my 2024 Business Informatics thesis at HSE University. The research reports 182 completed questionnaires and qualitative guest-experience work. I connected service problems with CJM, Service Blueprint, requirements, UX flows and system models.
+
+The 2026 AI-assisted reconstruction replaces the lost AppSheet workflow with a demonstrable staff workspace and adds SQL-backed operational metrics. The interactive case shows how findings informed product decisions. Demo data is synthetic; no production hotel rollout or measured business improvement is claimed. Original coding attribution is retained in the provenance record.
+
+### Longer entry and role-specific positioning
+
 **Hotel Guest Experience & Service Automation Platform**  
 HSE University graduation project, 2024; portfolio reconstruction, 2026
 
