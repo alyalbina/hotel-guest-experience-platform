@@ -742,6 +742,18 @@ figcaption {
   border-right:0
 }
 
+.research-atlas-teaser {display:grid;grid-template-columns:1fr 1fr;gap:40px 70px;border-top:1px solid var(--line);padding-top:45px;margin-top:46px}
+.research-atlas-teaser h3 {font-size:clamp(32px,3.5vw,48px);line-height:1.14;letter-spacing:-.04em;font-weight:500;margin:15px 0 22px}
+.research-atlas-teaser>div:first-child>p:not(.mini-label) {font-size:14px;color:var(--muted);max-width:480px;margin-bottom:25px}
+.research-atlas-teaser .button {font-size:12px}
+.research-depth {list-style:none;display:grid;gap:24px}
+.research-depth li {border-bottom:1px solid var(--line);padding-bottom:20px}
+.research-depth span {display:block;font-size:11px;letter-spacing:.08em;color:var(--muted);margin-bottom:8px}
+.research-depth strong {font-size:18px;font-weight:500;display:block;margin-bottom:6px}
+.research-depth p {font-size:13px;color:var(--muted);line-height:1.75}
+.research-deep-links {grid-column:1/-1;display:flex;gap:28px;flex-wrap:wrap}
+@media(max-width:760px) {.research-atlas-teaser{grid-template-columns:1fr;gap:28px;margin-top:32px;padding-top:30px}.research-deep-links{gap:14px}.research-atlas-teaser .button{font-size:11px;padding-inline:15px}}
+
 .evidence-details {
   border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);
