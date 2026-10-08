@@ -25,5 +25,31 @@
   },
   "external_telegram": "not tested",
   "external_google_sheets": "not tested",
-  "public_github_pages": "not published"
+  "public_github_pages": "published and browser verified",
+  "publication": {
+    "date_utc": "2026-10-08",
+    "owner": "alyalbina",
+    "repository": "https://github.com/alyalbina/hotel-guest-experience-platform",
+    "demo": "https://alyalbina.github.io/hotel-guest-experience-platform/demo/",
+    "initial_archive_files": 83,
+    "missing_files": 0,
+    "unexpected_files": 0,
+    "byte_mismatches": 0,
+    "ci_run": "https://github.com/alyalbina/hotel-guest-experience-platform/actions/runs/37847790485",
+    "ci_result": "success",
+    "ci_python_versions": [
+      "3.11",
+      "3.12",
+      "3.13"
+    ],
+    "pages_run": "https://github.com/alyalbina/hotel-guest-experience-platform/actions/runs/37847919589",
+    "pages_result": "success",
+    "preview_checks": [
+      "department and status filters",
+      "employee assignment",
+      "acknowledgement and event history",
+      "analytics",
+      "reset on refresh"
+    ]
+  }
 }

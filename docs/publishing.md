@@ -2,7 +2,7 @@
 
 Repository name: **hotel-guest-experience-platform**. Repository owner selected for publication: **alyalbina**. Public name: **Hotel Guest Experience & Service Automation Platform**.
 
-A public repository was created under `alyalbina` on 8 October 2026 (UTC). Source upload and GitHub Pages deployment are being verified separately. The publication package contains clean source and synthetic assets; the original archives, thesis PDF, credentials and operational databases are excluded.
+The [public repository](https://github.com/alyalbina/hotel-guest-experience-platform) and [live preview](https://alyalbina.github.io/hotel-guest-experience-platform/demo/) were published and verified on 8 October 2026 (UTC). A downloaded GitHub archive matched all 83 source and asset files byte for byte. [CI](https://github.com/alyalbina/hotel-guest-experience-platform/actions/runs/37847790485) and [Pages deployment](https://github.com/alyalbina/hotel-guest-experience-platform/actions/runs/37847919589) passed. The publication package contains clean source and synthetic assets; the original archives, thesis PDF, credentials and operational databases are excluded.
 
 ## Publish the repository
 
@@ -28,7 +28,7 @@ After upload: repository **Settings → Pages → Deploy from a branch → main 
 
 `https://alyalbina.github.io/hotel-guest-experience-platform/demo/`
 
-This URL is a planned deployment address until Pages reports success. Confirm it loads in a signed-out browser, filters work, a preview update changes history, and refresh resets it. The README already explains this publishing boundary.
+The live preview was verified without application sign-in: department/status filters, employee assignment, acknowledgement history, analytics and reset on refresh work. It is a browser-only simulation, not a deployed Python service.
 
 ## Finish the portfolio page
 

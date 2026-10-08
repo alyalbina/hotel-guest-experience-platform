@@ -43,7 +43,7 @@ Coverage rounding: 593 covered of 658 statements. The suite emits one non-failin
 
 **Live Google Sheets:** no authorized real spreadsheet was accessed. The adapter is tested with a mocked client; worksheet creation/access/large-sheet quotas and actual export need replacement credentials and a dedicated test sheet.
 
-**Public GitHub/Pages:** repository creation and hosting are external pending actions. Workflow YAML is supplied, but CI/Pages are not counted as run. The README's planned preview URL is explicitly conditional on publication.
+**Public GitHub/Pages (8 October 2026, UTC):** [repository](https://github.com/alyalbina/hotel-guest-experience-platform) published under `alyalbina`. The downloaded initial publication archive contained all 83 expected files with no missing, unexpected or byte-mismatched files. [CI run #1](https://github.com/alyalbina/hotel-guest-experience-platform/actions/runs/37847790485) passed all Python 3.11/3.12/3.13 quality jobs, browser smoke checks and dependency audit. [Pages build/deployment #1](https://github.com/alyalbina/hotel-guest-experience-platform/actions/runs/37847919589) passed. The [live demo](https://alyalbina.github.io/hotel-guest-experience-platform/demo/) was checked through browser UI: department and status filters, assignment, acknowledgement with event history, analytics and reset on refresh. Documentation status was updated after these checks; software implementation was unchanged.
 
 **Hotel operations:** no field trial, staff usability sample, authenticated check-in or demonstrated business/financial improvement.
 

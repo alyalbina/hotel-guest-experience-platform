@@ -13,7 +13,7 @@ Priorities reflect a portfolio release first, then external validation and a lim
 | P1 / ANA-01 | Add eight requested metrics, SQL and cohort visuals | Done with synthetic data | Metric parity and browser tests |
 | P1 / DOC-01 | Publish source-grounded English artifacts and contribution boundaries | Done | Documentation and provenance |
 | P1 / DEMO-01 | Prepare no-install preview and screenshots | Done | Standalone browser tests |
-| P1 / PUB-01 | Create GitHub repository and enable Pages | Prepared, external action pending | Publication package and instructions |
+| P1 / PUB-01 | Create GitHub repository and enable Pages | Done, verified | Public repository, live synthetic preview and successful CI |
 | P1 / INT-01 | Verify live Telegram with a new token | Pending credentials | Register → submit → staff resolve → guest rate |
 | P1 / INT-02 | Verify optional Sheets with a new least-privilege key | Pending if needed | RAW snapshot, re-export and access-failure test |
 | P2 / ID-01 | Verify guest stay via hotel-issued code/PMS | Planned | Hotel partnership and identity requirements |
