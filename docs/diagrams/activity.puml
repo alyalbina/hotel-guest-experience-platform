@@ -1,0 +1,36 @@
+@startuml
+title Current request workflow - reconstructed and extended
+start
+partition Guest {
+ :Select room/name, category and service;
+ :Enter request details;
+}
+partition System {
+ if (Input valid?) then (yes)
+  :Begin request/event transaction;
+  if (Persistence succeeds?) then (yes)
+   :Commit and confirm request ID;
+  else (no)
+   :Rollback; preserve input; explain retry;
+   stop
+  endif
+ else (no)
+  :Ask for corrected input;
+  stop
+ endif
+}
+partition Staff {
+ :Sign in; access authorized department;
+ :Assign eligible employee;
+ :Acknowledge and perform service;
+ :Resolve with timestamp;
+ if (Further work needed?) then (yes)
+  :Reopen with reason;
+  :Perform follow-up and resolve;
+ endif
+}
+partition Guest {
+ :Check status and optionally rate;
+}
+stop
+@enduml

@@ -1,0 +1,48 @@
+@startuml
+hide empty members
+title Current logical domain model - not an ORM class map
+class Room {
+ id : text
+}
+class Guest {
+ id : integer
+ telegram_id : integer
+ name : text
+ room_id : text
+}
+class Department {
+ id : text
+ sla_minutes : integer
+}
+class Category {
+ id : text
+}
+class Staff {
+ id : integer
+ role : manager|agent|analyst
+}
+class Request {
+ id : text
+ status : enum
+ version : integer
+ responded_at : UTC
+ first_resolved_at : UTC
+ resolved_at : UTC
+ acknowledge()
+ resolve()
+ reopen(reason)
+}
+class RequestEvent {
+ action : text
+ note : text
+ occurred_at : UTC
+}
+Room "1" -- "0..*" Guest
+Guest "1" -- "0..*" Request
+Department "1" -- "0..*" Category
+Category "1" -- "0..*" Request
+Department "0..1" -- "0..*" Staff
+Staff "0..1" -- "0..*" Request : responsible
+Request "1" -- "1..*" RequestEvent
+Staff "0..1" -- "0..*" RequestEvent : actor
+@enduml

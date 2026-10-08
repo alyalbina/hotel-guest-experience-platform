@@ -1,0 +1,30 @@
+@startuml
+title Local full prototype deployment
+node "Guest device" {
+ artifact "Telegram client" as Guest
+}
+cloud "Telegram Bot API" as Telegram
+node "Staff device" {
+ artifact "Web browser" as Browser
+}
+node "Single application host" {
+ node "Bot process" {
+ artifact "Python / aiogram" as Bot
+ }
+ node "Web process" {
+ artifact "Python / FastAPI" as API
+ }
+ database "Shared SQLite file" as DB
+ artifact "Manual export CLI" as Export
+}
+cloud "Google Sheets (optional)" as Sheets
+Guest --> Telegram
+Bot --> Telegram : polling / replies
+Browser --> API : local HTTP demo; HTTPS for private deployment
+Bot --> DB
+API --> DB
+Export --> DB
+Export --> Sheets
+note bottom of DB : One host / one shared database path.
+Not a multi-instance deployment.
+@enduml

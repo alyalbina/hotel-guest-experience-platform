@@ -1,0 +1,17 @@
+@startuml
+title Current components - Sheets is outside intake dependency
+component "aiogram adapter" as Bot
+component "FastAPI / session, CSRF, roles" as API
+component "Domain service" as Domain
+component "Metric calculator" as Metrics
+database "SQLite" as DB
+component "Explicit snapshot exporter" as Export
+cloud "Google Sheets (optional)" as Sheets
+Bot --> Domain
+API --> Domain
+Domain --> DB
+API --> Metrics
+Domain --> Metrics : filtered rows
+Export --> DB : operational snapshot
+Export --> Sheets : RAW batch
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+left to right direction
+title Current prototype - use cases (2026 reconstruction)
+actor Guest
+actor "Service Manager" as Manager
+actor "Department Agent" as Agent
+actor Analyst
+rectangle "Hotel guest service platform" {
+ usecase "Register and submit request" as Intake
+ usecase "View own request status" as Lookup
+ usecase "Rate resolved service" as Rate
+ usecase "Sign in as staff" as Login
+ usecase "Filter and inspect requests" as Inspect
+ usecase "Assign eligible employee" as Assign
+ usecase "Change state / add note" as Update
+ usecase "Review operational metrics" as Metrics
+}
+Guest --> Intake
+Guest --> Lookup
+Guest --> Rate
+Manager --> Login
+Agent --> Login
+Analyst --> Login
+Manager --> Inspect
+Agent --> Inspect
+Analyst --> Inspect
+Manager --> Assign
+Agent --> Assign
+Manager --> Update
+Agent --> Update
+Manager --> Metrics
+Agent --> Metrics
+Analyst --> Metrics
+note bottom of Inspect : Agent access is department-scoped.
+Analyst is read-only.
+@enduml

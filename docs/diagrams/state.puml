@@ -1,0 +1,19 @@
+@startuml
+title Current enforced lifecycle
+[*] --> New
+New --> Acknowledged
+New --> Cancelled : reason
+Acknowledged --> InProgress
+Acknowledged --> Resolved
+Acknowledged --> Cancelled : reason
+InProgress --> Resolved
+InProgress --> Cancelled : reason
+Resolved --> Reopened : reason; clear current rating/resolution
+Reopened --> InProgress
+Reopened --> Resolved
+Reopened --> Cancelled : reason
+Cancelled --> [*]
+note right of Acknowledged : First response time set once
+note right of Resolved : First resolution retained;
+latest resolution is current
+@enduml

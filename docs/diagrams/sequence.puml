@@ -1,0 +1,24 @@
+@startuml
+title Durable request creation and staff update
+actor Guest
+participant "aiogram adapter" as Bot
+participant "Domain service" as Service
+database SQLite
+actor "Staff via API" as Staff
+Guest -> Bot : catalog selection + detail
+Bot -> Service : create_request(guest, source_ref)
+Service -> SQLite : BEGIN; request + event
+alt commit succeeds
+ SQLite --> Service : durable ID
+ Service --> Bot : request ID
+ Bot --> Guest : saved confirmation
+ Staff -> Service : authenticated change, expected version
+ Service -> SQLite : BEGIN IMMEDIATE; check version; update + event
+ SQLite --> Service : commit
+ Service --> Staff : changed record
+else persistence fails
+ SQLite --> Service : rollback/error
+ Service --> Bot : failure
+ Bot --> Guest : retry guidance; no success
+end
+@enduml
