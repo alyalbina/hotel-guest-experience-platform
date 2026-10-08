@@ -6,6 +6,14 @@ Validation date: 8 October 2026 (UTC). This report covers the new static portfol
 **Interactive product demo:** https://alyalbina.github.io/hotel-guest-experience-platform/demo/  
 **CV, LinkedIn Featured / Projects and interview copy:** [portfolio.md](portfolio.md)
 
+## Published review
+
+The live case study was opened and checked on GitHub Pages. Decision, Blueprint and SLA controls updated correctly; screenshot enlargement closed with Escape; the demo button opened the existing preview with 96 fictional requests. No site-origin console warnings or errors were observed.
+
+Changes are in **`feat-product-case-study`**, with [Pull Request #1](https://github.com/alyalbina/hotel-guest-experience-platform/pull/1). GitHub Pages serves that branch's `/docs` folder for review; `main` was not changed. The downloaded feature-branch archive contained **91 files**, byte-identical to the prepared public worktree at commit `0ef78f4` (before this report's publication note).
+
+[CI run #10](https://github.com/alyalbina/hotel-guest-experience-platform/actions/runs/37851920032) passed with the new case-study smoke step. [Pages deployment #4](https://github.com/alyalbina/hotel-guest-experience-platform/actions/runs/37852034091) passed. The PR showed 13 successful checks and no conflicts before this documentation-only publication note; current status remains available on the PR.
+
 ## Design and implementation
 
 The page uses an editorial grid, large typography, a restrained green/paper palette and actual application screenshots. It starts with the product, then connects research with decisions, service/system models, implementation and measurement. A short reading path helps a recruiter scan the strongest evidence in two minutes.
