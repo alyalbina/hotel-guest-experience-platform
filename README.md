@@ -6,7 +6,7 @@ Created from Albina Urubkina's 2024 HSE University graduation thesis in Business
 
 **[Open the interactive demo](https://alyalbina.github.io/hotel-guest-experience-platform/demo/)** · [Product case study](docs/research.md) · [PRD](docs/prd.md) · [Business requirements](docs/brd.md) · [Evidence & provenance](docs/provenance.md)
 
-> The public demo link becomes available after this repository is published and GitHub Pages is enabled. Until then, download the repository and open **`OPEN_DEMO.html`** directly in a browser. No Python, account or API key is needed for this preview. Preview edits exist only in the current tab and reset on refresh.
+> The live demo is available on GitHub Pages. No Python, account or API key is needed. It uses synthetic data; edits exist only in the current tab and reset on refresh. For an offline preview, download the repository and open **`OPEN_DEMO.html`**.
 
 ![Staff request inbox using synthetic data](docs/screenshots/inbox.png)
 
@@ -118,7 +118,7 @@ python -m playwright install chromium
 python scripts/browser_smoke.py
 ```
 
-Tests cover the real aiogram dispatch through an offline transport, validation, atomic persistence, concurrent updates, role boundaries, authentication, CSRF, SQL/Python metric parity and export failure isolation. Local results and untested external integrations are recorded in [validation](docs/validation.md). CI is configured; a local pass is not a claim that GitHub CI has already run.
+Tests cover the real aiogram dispatch through an offline transport, validation, atomic persistence, concurrent updates, role boundaries, authentication, CSRF, SQL/Python metric parity and export failure isolation. Local results and untested external integrations are recorded in [validation](docs/validation.md). [GitHub CI](https://github.com/alyalbina/hotel-guest-experience-platform/actions/runs/37847790485) passed on Python 3.11, 3.12 and 3.13, including browser smoke checks and a dependency audit. [Pages deployment](https://github.com/alyalbina/hotel-guest-experience-platform/actions/runs/37847919589) passed. Publication was verified on 8 October 2026 (UTC).
 
 ## Limitations & Future Improvements
 
