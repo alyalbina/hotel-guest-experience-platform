@@ -8,6 +8,8 @@ Created from Albina Urubkina's 2024 HSE University graduation thesis in Business
 
 The case study traces guest-service research through product decisions, service/system design and a working prototype. Interactive models, real screenshots and metric definitions are supported by the source documentation. See [case-study validation and sharing copy](docs/case-study-notes.md).
 
+**[Explore the 16-diagram Research & Analysis Atlas](https://alyalbina.github.io/hotel-guest-experience-platform/case-study/artifacts/)** · [Research deep dive](docs/research-deep-dive.md) · [Evidence → requirements → verification](docs/research-traceability.md). Inspect the full CJM and Blueprint, original affinity groups, Fishbone, stakeholders, AS-IS / TO-BE, FURPS+, seven current UML views and the ERD. Each model identifies its thesis source, decision and evidence boundary.
+
 > The live demo is available on GitHub Pages. No Python, account or API key is needed. It uses synthetic data; edits exist only in the current tab and reset on refresh. For an offline preview, download the repository and open **`OPEN_DEMO.html`**.
 
 ![Staff request inbox using synthetic data](docs/screenshots/inbox.png)
