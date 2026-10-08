@@ -1,0 +1,213 @@
+"""Validate the static case study, keyboard interactions and responsive layout."""
+
+import functools
+import json
+import os
+import tempfile
+import threading
+from html.parser import HTMLParser
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+from urllib.parse import unquote, urlsplit
+
+from playwright.sync_api import sync_playwright
+
+ROOT = Path(__file__).resolve().parents[1]
+PAGE = ROOT / "docs/case-study/index.html"
+
+
+class References(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.ids = []
+        self.references = []
+
+    def handle_starttag(self, tag, attrs):
+        attributes = dict(attrs)
+        if attributes.get("id"):
+            self.ids.append(attributes["id"])
+        for field in ("href", "src", "data-zoom", "aria-controls"):
+            if attributes.get(field):
+                self.references.append((field, attributes[field]))
+
+
+def check_local_references():
+    parser = References()
+    parser.feed(PAGE.read_text())
+    assert len(parser.ids) == len(set(parser.ids)), "Duplicate HTML IDs"
+    for field, value in parser.references:
+        parsed = urlsplit(value)
+        if parsed.scheme:
+            assert parsed.scheme == "https", value
+            prefix = "https://github.com/alyalbina/hotel-guest-experience-platform/blob/main/"
+            if value.startswith(prefix):
+                assert (ROOT / unquote(value[len(prefix) :])).is_file(), value
+            continue
+        if field == "aria-controls":
+            assert value in parser.ids, value
+        elif not parsed.path:
+            assert parsed.fragment in parser.ids, value
+        else:
+            target = PAGE.parent / unquote(parsed.path)
+            if target.is_dir():
+                target = target / "index.html"
+            assert target.is_file(), value
+    return len(parser.references)
+
+
+class QuietHandler(SimpleHTTPRequestHandler):
+    def log_message(self, *_args):
+        pass
+
+
+def main():
+    references = check_local_references()
+    handler = functools.partial(QuietHandler, directory=str(ROOT / "docs"))
+    server = ThreadingHTTPServer(("127.0.0.1", 0), handler)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    url = f"http://127.0.0.1:{server.server_port}/case-study/"
+    with tempfile.TemporaryDirectory() as temporary:
+        artifacts = Path(os.getenv("CASE_STUDY_ARTIFACT_DIR", temporary))
+        artifacts.mkdir(parents=True, exist_ok=True)
+        try:
+            with sync_playwright() as p:
+                options = {
+                    "headless": True,
+                    "args": ["--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu"],
+                }
+                if os.getenv("CHROMIUM_EXECUTABLE"):
+                    options["executable_path"] = os.environ["CHROMIUM_EXECUTABLE"]
+                browser = p.chromium.launch(**options)
+                page = browser.new_page(viewport={"width": 1440, "height": 1060})
+                errors, failed_resources = [], []
+                page.on("pageerror", lambda error: errors.append(str(error)))
+                page.on(
+                    "response",
+                    lambda response: (
+                        failed_resources.append(response.url) if response.status >= 400 else None
+                    ),
+                )
+                page.goto(url, wait_until="networkidle")
+                page.screenshot(path=str(artifacts / "desktop.png"))
+                page.screenshot(path=str(artifacts / "desktop-full.png"), full_page=True)
+                assert page.locator("h1").count() == 1
+                assert page.locator(".hero-shot img").evaluate("e => e.naturalWidth") == 1440
+
+                # Decision trace, changing explanation and panel association.
+                page.locator("#finding-ownership").click()
+                assert "responsibility" in page.locator("#decision-title").inner_text()
+                assert page.locator("#decision-panel").get_attribute("aria-labelledby") == "finding-ownership"
+                page.locator("#finding-ownership").press("ArrowDown")
+                assert page.locator("#finding-access").get_attribute("aria-selected") == "true"
+                assert page.evaluate("document.activeElement.id") == "finding-access"
+                page.locator("#finding-access").press("Home")
+                assert page.locator("#finding-context").get_attribute("aria-selected") == "true"
+
+                for key in ("blueprint", "process", "system", "journey"):
+                    page.locator(f"#artifact-{key}").click()
+                    assert page.locator(f"#panel-{key}").is_visible()
+                page.locator("#scenario-guest").click()
+                assert page.locator("#panel-guest").is_visible()
+                assert "/requests" in page.locator("#panel-guest").inner_text()
+                page.locator("#scenario-staff").click()
+                assert page.locator("#panel-staff").is_visible()
+                for key in ("resolution", "sla", "completion", "reopen", "csat", "response"):
+                    page.locator(f"#metric-{key}").click()
+                    assert page.locator("#metric-panel").get_attribute("aria-labelledby") == f"metric-{key}"
+                page.locator("#metric-response").press("End")
+                assert page.locator("#metric-csat").get_attribute("aria-selected") == "true"
+                page.locator(".historical-metrics").locator("..").locator("summary").click()
+                assert page.locator(".historical-metrics").is_visible()
+                assert "3.02" in page.locator(".historical-metrics").inner_text()
+
+                # Native dialog retains focus and returns it to the trigger.
+                trigger = page.locator(".hero-shot")
+                trigger.click()
+                assert page.locator("#image-dialog").is_visible()
+                page.keyboard.press("Tab")
+                assert page.evaluate("document.activeElement.closest('dialog') !== null")
+                page.keyboard.press("Escape")
+                assert not page.locator("#image-dialog").is_visible()
+                assert trigger.evaluate("e => e === document.activeElement")
+                for image in page.locator("[data-zoom]").all():
+                    image.click()
+                    assert page.locator("#expanded-image").evaluate("e => e.complete && e.naturalWidth > 0")
+                    page.locator(".dialog-close").click()
+
+                for section in (
+                    "research",
+                    "decisions",
+                    "design",
+                    "product",
+                    "analytics",
+                    "validation",
+                    "contribution",
+                    "next",
+                ):
+                    page.locator(f"#{section}").screenshot(
+                        path=str(artifacts / f"{section}.png"),
+                        style=".site-header,.skip-link{visibility:hidden!important}",
+                    )
+
+                widths = [320, 390, 768, 1024, 1440]
+                for width in widths:
+                    page.set_viewport_size({"width": width, "height": 1060})
+                    if page.evaluate("document.documentElement.scrollWidth > innerWidth"):
+                        page.screenshot(path=str(artifacts / "overflow.png"), full_page=True)
+                        oversized = page.evaluate("""() => [...document.querySelectorAll('body *')]
+                            .filter(e => e.getBoundingClientRect().right > innerWidth + 1)
+                            .map(e => ({tag:e.tagName, id:e.id, cls:e.className,
+                                right:Math.round(e.getBoundingClientRect().right)}))""")
+                        raise AssertionError((width, oversized))
+                    for key in ("blueprint", "process", "system", "journey"):
+                        page.locator(f"#artifact-{key}").click()
+                        assert not page.evaluate("document.documentElement.scrollWidth > innerWidth"), (
+                            width,
+                            key,
+                        )
+                    page.locator("#scenario-guest").click()
+                    assert not page.evaluate("document.documentElement.scrollWidth > innerWidth"), width
+                    page.locator("#scenario-staff").click()
+                page.set_viewport_size({"width": 390, "height": 1060})
+                page.locator(".menu-toggle").click()
+                assert page.locator(".menu-toggle").get_attribute("aria-expanded") == "true"
+                page.keyboard.press("Escape")
+                assert page.locator(".menu-toggle").get_attribute("aria-expanded") == "false"
+                page.locator(".menu-toggle").click()
+                page.locator('#page-nav a[href="#research"]').click()
+                assert page.locator(".menu-toggle").get_attribute("aria-expanded") == "false"
+                page.emulate_media(reduced_motion="reduce")
+                assert page.evaluate("getComputedStyle(document.documentElement).scrollBehavior") == "auto"
+                page.goto(url, wait_until="networkidle")
+                page.screenshot(path=str(artifacts / "mobile.png"))
+                page.screenshot(path=str(artifacts / "mobile-full.png"), full_page=True)
+
+                # Existing preview remains reachable with its own relative assets.
+                page.locator(".hero-actions a").first.click()
+                page.wait_for_selector("#request-table tr")
+                assert page.locator("#queue-count").inner_text() == "96"
+                assert errors == [], errors
+                assert failed_resources == [], failed_resources
+                browser.close()
+            result = {
+                "local_references": references,
+                "responsive_widths": widths,
+                "document_overflow": False,
+                "interactive_decisions_artifacts_metrics": "passed",
+                "keyboard_tabs_menu_dialog_focus": "passed",
+                "reduced_motion": "passed",
+                "existing_demo": "passed",
+                "javascript_errors": errors,
+                "failed_resources": failed_resources,
+                "automated_accessibility_audit": "not performed",
+            }
+            (artifacts / "result.json").write_text(json.dumps(result, indent=2) + "\n")
+            print(json.dumps(result))
+        finally:
+            server.shutdown()
+            server.server_close()
+
+
+if __name__ == "__main__":
+    main()
