@@ -36,4 +36,12 @@ Albina is the thesis author and may present its research, service-design work, b
 
 The new implementation is a clean rebuild with AI engineering assistance, guided by the original thesis and source. It should be presented as a reconstruction/extension, not as code independently written in 2024. Before using a CV statement about personally coding the original bot, confirm the actual contribution history.
 
+## Research and analysis atlas
+
+The [16-view visual atlas](https://alyalbina.github.io/hotel-guest-experience-platform/case-study/artifacts/) was redrawn in English in 2026 after reviewing the embedded thesis figures. The original affinity group headings and Fishbone causes are translated, while long research notes and persona text are summarized. CJM, Blueprint, stakeholder and process views are reconstructions; the FURPS+ view pairs the original framework with current controls. Seven UML views and the ERD describe the current system and link to editable sources or the full data model. Selected relationships are labelled as such.
+
+The thesis already **designed** detailed request states, reopening, authorization and notifications (pp. 35-53). New state/access enforcement must not be presented as proof that these concepts were absent from the 2024 design. The preserved bot only creates `Incompleted` tasks; proactive notifications and verified hotel identity remain planned. [Research traceability](research-traceability.md) separates design intent, surviving implementation and the rebuild.
+
+The atlas contains no original respondent records, private quotations, portrait imagery, credential-bearing screenshots or research distribution reconstructed without data. All 16 diagrams are new renderings, not surviving original editable boards.
+
 Novotel is the thesis case context. No current partnership, brand endorsement, authorized hotel deployment or access to its production systems is claimed.

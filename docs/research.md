@@ -35,11 +35,17 @@ These figures describe the thesis's research reporting, not a measured before/af
 
 ## Affinity reconstruction
 
-Reported themes are grouped into **access to service** (phone/language and reception friction), **execution** (delays and service quality), **information flow** (lost requests and inconsistent staff knowledge), and **operational visibility** (missing management context). These group names are an editorial reconstruction, not a claim that they reproduce every original sticky note.
+The visually inspected source board (T1 p. 17, Figure 2) has four groups: **information and communication**, **room amenities**, **stay conditions**, and **staff skills**. English summaries preserve those original headings without fabricating quotes or translating every sticky note. See the [deep dive](research-deep-dive.md) and [visual atlas](https://alyalbina.github.io/hotel-guest-experience-platform/case-study/artifacts/).
+
+Access to service, execution delays, information flow and operational visibility are the portfolio's **product-level synthesis**, rather than the original affinity headings. These lenses explain which parts of the broad research map are addressed by the MVP.
 
 ## Fishbone reconstruction
 
-The thesis organizes delay causes into people, process, technology and infrastructure (pp. 19–20). The digital product addresses task capture, handoff, status and information flow. Staff training, incentives and the physical hotel layout remain operational interventions outside application scope. A software queue alone cannot solve those causes.
+The thesis organizes delay causes into people, process, technology and infrastructure (pp. 19–20). The [deep dive](research-deep-dive.md) translates all listed cause groups, and the atlas renders the fishbone. The digital product addresses task capture, handoff, status and information flow. Staff training, incentives and the physical hotel layout remain operational interventions outside application scope. A software queue alone cannot solve those causes.
+
+## Inspect the complete research-to-delivery chain
+
+[Research & Analysis Atlas](https://alyalbina.github.io/hotel-guest-experience-platform/case-study/artifacts/) → [research deep dive](research-deep-dive.md) → [evidence/requirement/verification register](research-traceability.md). These distinguish original design intent, preserved implementation and the current rebuild, including the fact that rich states and reopening were already designed in the thesis.
 
 ## Discovery questions for a new pilot
 

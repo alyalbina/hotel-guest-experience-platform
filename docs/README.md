@@ -7,6 +7,9 @@ This documentation separates 2024 thesis evidence from the 2026 reconstruction. 
 | [Provenance](provenance.md) | Evidence sources, authorship and feature classification |
 | [Technical audit](audit.md) | Repeated audit of both uploaded archives |
 | [Research](research.md) | Reported findings, limitations and product-discovery reasoning |
+| [Research deep dive](research-deep-dive.md) | Methods, original affinity groups, root causes and discovery scope |
+| [Research & Analysis Atlas](https://alyalbina.github.io/hotel-guest-experience-platform/case-study/artifacts/) | 16 labelled English visual models, with source and decision explanations |
+| [Evidence-to-requirement register](research-traceability.md) | Thesis evidence, requirements/stories, delivered behavior, technical checks and pilot needs |
 | [PRD](prd.md) | Scope, workflow and product decisions |
 | [BRD](brd.md) | Business objectives, stakeholders and operational rules |
 | [User stories](user-stories.md) | Observable acceptance criteria |
