@@ -4,7 +4,9 @@
 
 Created from Albina Urubkina's 2024 HSE University graduation thesis in Business Informatics, focused on service design at Novotel Moscow. The runnable platform is a **2026 portfolio reconstruction and extension**, not an official Novotel product or a production deployment.
 
-**[Open the interactive demo](https://alyalbina.github.io/hotel-guest-experience-platform/demo/)** · [Product case study](docs/research.md) · [PRD](docs/prd.md) · [Business requirements](docs/brd.md) · [Evidence & provenance](docs/provenance.md)
+**[Explore the visual product case study](https://alyalbina.github.io/hotel-guest-experience-platform/case-study/)** · **[Try the interactive demo](https://alyalbina.github.io/hotel-guest-experience-platform/demo/)** · [Research sources](docs/research.md) · [PRD](docs/prd.md) · [Business requirements](docs/brd.md) · [Evidence & provenance](docs/provenance.md)
+
+The case study traces guest-service research through product decisions, service/system design and a working prototype. Interactive models, real screenshots and metric definitions are supported by the source documentation. See [case-study validation and sharing copy](docs/case-study-notes.md).
 
 > The live demo is available on GitHub Pages. No Python, account or API key is needed. It uses synthetic data; edits exist only in the current tab and reset on refresh. For an offline preview, download the repository and open **`OPEN_DEMO.html`**.
 
@@ -116,6 +118,7 @@ ruff format --check .
 python scripts/check_public_tree.py
 python -m playwright install chromium
 python scripts/browser_smoke.py
+python scripts/case_study_smoke.py
 ```
 
 Tests cover the real aiogram dispatch through an offline transport, validation, atomic persistence, concurrent updates, role boundaries, authentication, CSRF, SQL/Python metric parity and export failure isolation. Local results and untested external integrations are recorded in [validation](docs/validation.md). [GitHub CI](https://github.com/alyalbina/hotel-guest-experience-platform/actions/runs/37847790485) passed on Python 3.11, 3.12 and 3.13, including browser smoke checks and a dependency audit. [Pages deployment](https://github.com/alyalbina/hotel-guest-experience-platform/actions/runs/37847919589) passed. Publication was verified on 8 October 2026 (UTC).
