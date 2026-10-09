@@ -1,5 +1,13 @@
 # Product case study: design, evidence and quality report
 
+## Visual refinement — 9 October 2026
+
+The case and atlas share a warm paper / deep teal palette, clearer type hierarchy and consistent controls. The shorter hero foregrounds the real staff workspace and keeps the fictional-data note visible. Three dated contribution cards separate the thesis work from the portfolio rebuild. Tighter section spacing and larger supporting copy make the case easier to scan.
+
+The case now previews the full customer journey, Service Blueprint and current request-state UML. These SVG assets are generated from the same models as the atlas, rather than separate decorative diagrams. Each can be enlarged and links to its full source/decision record. All 16 atlas views and evidence boundaries remain available. The new `design.css` visual layer needs no build step, external font, paid service or third-party script.
+
+Local checks passed: 108 case/atlas references, including local HTML fragment targets; responsive layout at 320, 390, 768, 1024 and 1440 pixels; all image enlargements and atlas diagrams; keyboard/tab/menu behavior; reduced motion; the existing preview and guided request lifecycle. No document overflow, JavaScript exceptions or failed resources were observed. Desktop/mobile and model previews were visually inspected. Ruff and the publication gate passed. This is visual and interaction verification, not a human usability study or a formal accessibility audit.
+
 ## Guided workflow and decision expansion — 9 October 2026
 
 The case now presents personal contribution immediately after the hero and adds three decision records with alternatives, limitations and reconsideration criteria. A side-by-side architecture comparison distinguishes the lost 2024 AppSheet prototype from the new staff workspace. [The analytical example](analytics-case.md) uses the generated 96-record cohort and explicitly separates unfinished work from closed-only SLA.

@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#f7f8f3">
   <title>Redesigning the Hotel Guest Experience · Albina Urubkina</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="design.css">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <script src="case-study.js" defer></script>
 </head>
@@ -24,10 +25,11 @@
 <main id="main">
   <section class="hero wrap" aria-labelledby="hero-title">
     <div class="hero-copy">
-      <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> HOSPITALITY TECH / PRODUCT CASE 01</p>
-      <h1 id="hero-title">Redesigning<br>the hotel<br><span>guest experience.</span></h1>
-      <p class="hero-intro">From fragmented service requests to one connected operations workspace.</p>
+      <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> GUESTFLOW / HOSPITALITY TECH</p>
+      <h1 id="hero-title">Every request.<br><span>A clear next step.</span></h1>
+      <p class="hero-intro">A research-led hotel service platform. From fragmented handoffs to one traceable guest-request workflow.</p>
       <div class="hero-actions"><a class="button primary" href="../demo/?tour=request">Try the 90-second demo <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/alyalbina/hotel-guest-experience-platform">Explore GitHub <span aria-hidden="true">↗</span></a></div>
+      <p class="hero-demo-note">No account needed <span aria-hidden="true">·</span> Fictional demo data</p>
       <dl class="project-meta">
         <div><dt>My focus</dt><dd>Research · Product decisions · Business &amp; system analysis</dd></div>
         <div><dt>Period</dt><dd>HSE University thesis, 2024<br>Portfolio reconstruction, 2026</dd></div>
@@ -42,12 +44,12 @@
         <span class="zoom-hint" aria-hidden="true">Expand screen ↗</span>
       </button>
       <figcaption><span class="caption-line"></span>Real application screen. Synthetic data. No hotel rollout claimed.</figcaption>
-      <div class="hero-principle"><span class="mini-label">THE CORE DESIGN DECISION</span><p>A request should keep its context<br><strong>from the guest to the person who acts.</strong></p></div>
+      <div class="hero-principle"><span class="mini-label">ONE RECORD THROUGH THE HANDOFF</span><p>Guest context. Clear ownership.<br><strong>A history the team can follow.</strong></p></div>
     </figure>
   </section>
 
   <section class="early-contribution wrap" aria-labelledby="early-contribution-title">
-    <div><p class="mini-label">MY CONTRIBUTION / ALBINA URUBKINA</p><h2 id="early-contribution-title">From research to a reviewable product.</h2></div>
+    <div><p class="mini-label">MY CONTRIBUTION / ALBINA URUBKINA</p><h2 id="early-contribution-title">Research to delivery.</h2></div>
     <div class="contribution-cards"><article><span>2024 / DISCOVERY</span><h3>Defined the service problem</h3><p>Conducted thesis research and synthesized guest friction through journey, blueprint and root-cause models.</p></article><article><span>2024 / PRODUCT &amp; ANALYSIS</span><h3>Turned needs into a system</h3><p>Specified processes, requirements, UML and data structures; designed the original prototype workflow for the HSE thesis.</p></article><article><span>2026 / PORTFOLIO REBUILD</span><h3>Made the case demonstrable</h3><p>Reconstructed the workflow, staff workspace and synthetic analytics with AI engineering assistance. Scope and authorship limits are documented.</p></article></div>
     <a class="source-link" href="#contribution">Full contribution &amp; provenance ↓</a>
   </section>
@@ -91,6 +93,11 @@
     <div class="research-atlas-teaser">
       <div><p class="mini-label">EXPLORE THE WORK BEHIND THE MVP</p><h3>16 models.<br>One connected analysis.</h3><p>Inspect the complete journey and blueprint, original affinity groups, root causes, stakeholder roles, process maps, FURPS+, seven current UML views and the data model.</p><a class="button primary" href="artifacts/">Open Research &amp; Analysis Atlas <span aria-hidden="true">↗</span></a></div>
       <ol class="research-depth"><li><span>01 / SYNTHESIZE</span><strong>Make the opportunity specific.</strong><p>Interview and review themes → affinity grouping → root-cause map. Keep staff training and room facilities visible outside software scope.</p></li><li><span>02 / MODEL</span><strong>Locate the handoff.</strong><p>The full CJM and Blueprint connect guest friction with reception, departments and backstage coordination.</p></li><li><span>03 / SPECIFY</span><strong>Make the decision reviewable.</strong><p>Source evidence → requirement → acceptance criteria → delivered behavior → verification. Each chain names what a hotel pilot still needs to test.</p></li></ol>
+      <div class="artifact-preview-grid" aria-label="Selected research and system models">
+        <article class="artifact-preview"><button class="screenshot" data-zoom="assets/journey.svg" data-caption="Full guest journey. English reconstruction of the 2024 thesis model, pp. 18–19; not an original research board." aria-label="Enlarge the full guest journey"><img src="assets/journey.svg" width="1210" height="887" loading="lazy" alt="Reconstructed six-stage guest journey with touchpoints, friction and opportunities."><span class="zoom-hint" aria-hidden="true">Inspect model ↗</span></button><div class="artifact-preview-copy"><span class="mini-label">THESIS-DERIVED / SERVICE DESIGN</span><h4>Customer journey</h4><a href="artifacts/#journey">Explore source &amp; decisions ↗</a></div></article>
+        <article class="artifact-preview"><button class="screenshot" data-zoom="assets/blueprint.svg" data-caption="Full Service Blueprint. English reconstruction from thesis p. 20, with guest, frontstage, backstage and support layers." aria-label="Enlarge the full service blueprint"><img src="assets/blueprint.svg" width="1165" height="802" loading="lazy" alt="Reconstructed service blueprint linking guest actions to visible and backstage hotel operations."><span class="zoom-hint" aria-hidden="true">Inspect model ↗</span></button><div class="artifact-preview-copy"><span class="mini-label">THESIS-DERIVED / OPERATIONS</span><h4>Service blueprint</h4><a href="artifacts/#blueprint">Explore source &amp; decisions ↗</a></div></article>
+        <article class="artifact-preview"><button class="screenshot" data-zoom="assets/state.svg" data-caption="Request state UML. Current 2026 implementation view informed by thesis pp. 44–45; not the original diagram." aria-label="Enlarge request state UML"><img src="assets/state.svg" width="1120" height="872" loading="lazy" alt="Current request state diagram showing acknowledgement, progress, resolution, reopening and cancellation."><span class="zoom-hint" aria-hidden="true">Inspect model ↗</span></button><div class="artifact-preview-copy"><span class="mini-label">CURRENT MODEL / SYSTEM ANALYSIS</span><h4>Request state UML</h4><a href="artifacts/#state">Explore source &amp; decisions ↗</a></div></article>
+      </div>
       <div class="research-deep-links"><a class="source-link" href="https://github.com/alyalbina/hotel-guest-experience-platform/blob/main/docs/research-deep-dive.md">Research methods &amp; synthesis ↗</a><a class="source-link" href="https://github.com/alyalbina/hotel-guest-experience-platform/blob/main/docs/research-traceability.md">Evidence-to-requirement register ↗</a></div>
     </div>
   </section>

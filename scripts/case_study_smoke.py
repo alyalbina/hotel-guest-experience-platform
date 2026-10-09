@@ -53,6 +53,10 @@ def check_local_references(source=PAGE):
             if target.is_dir():
                 target = target / "index.html"
             assert target.is_file(), value
+            if parsed.fragment and target.suffix == ".html":
+                target_parser = References()
+                target_parser.feed(target.read_text())
+                assert parsed.fragment in target_parser.ids, value
     return len(parser.references)
 
 
@@ -145,6 +149,7 @@ def main():
 
                 for section in (
                     "research",
+                    "research-atlas",
                     "decisions",
                     "design",
                     "product",
@@ -157,6 +162,8 @@ def main():
                         path=str(artifacts / f"{section}.png"),
                         style=".site-header,.skip-link{visibility:hidden!important}",
                     )
+                # Capture the complete page after lazy model thumbnails have loaded.
+                page.screenshot(path=str(artifacts / "desktop-full.png"), full_page=True)
 
                 widths = [320, 390, 768, 1024, 1440]
                 for width in widths:
