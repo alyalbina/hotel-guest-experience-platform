@@ -95,6 +95,13 @@ def main():
                 assert page.locator("h1").count() == 1
                 assert page.locator(".hero-shot img").evaluate("e => e.naturalWidth") == 1440
 
+                # Native decision disclosures remain independently reviewable.
+                for index in [1, 2]:
+                    page.locator(".tradeoff summary").nth(index).click()
+                    assert page.locator(".tradeoff").nth(index).get_attribute("open") is not None
+                    page.locator(".tradeoff summary").nth(index).press("Enter")
+                    assert page.locator(".tradeoff").nth(index).get_attribute("open") is None
+
                 # Decision trace, changing explanation and panel association.
                 page.locator("#finding-ownership").click()
                 assert "responsibility" in page.locator("#decision-title").inner_text()
@@ -249,6 +256,42 @@ def main():
                 page.locator(".hero-actions a").first.click()
                 page.wait_for_selector("#request-table tr")
                 assert page.locator("#queue-count").inner_text() == "96"
+                assert page.locator("#guided-demo").is_visible()
+                assert page.evaluate("demoRows.length") == 96
+                page.locator("#guide-next").click()
+                assert page.evaluate("demoRows.length") == 97
+                assert page.locator("#queue-count").inner_text() == "1"
+                assert page.evaluate("demoRows.find(r => r.id === 'tour-001').status") == "new"
+                page.locator("#guide-next").click()
+                guided = page.evaluate("demoRows.find(r => r.id === 'tour-001')")
+                assert guided["assigned_to"] is not None
+                assert guided["responded_at"] is None, "Assignment must not count as response"
+                page.locator("#guide-history").click()
+                assert "Employee ID" in page.locator("#detail-content").inner_text()
+                page.locator("#close-drawer").click()
+                for expected in ["acknowledged", "in_progress", "resolved"]:
+                    page.locator("#guide-next").click()
+                    assert page.evaluate("demoRows.find(r => r.id === 'tour-001').status") == expected
+                guided = page.evaluate("demoRows.find(r => r.id === 'tour-001')")
+                assert guided["responded_at"] == "2026-10-08T17:42:00Z"
+                assert guided["resolved_at"] == "2026-10-08T17:52:00Z"
+                assert len(guided["events"]) == 5
+                assert guided["csat"] is None
+                page.locator("#guide-next").click()
+                assert page.locator("#analytics-page").is_visible()
+                assert "96 → 97" in page.locator(".guide-comparison").inner_text()
+                assert page.evaluate("metrics.resolved_requests") == 69
+                assert page.evaluate("metrics.completion_rate") == 71.1
+                page.screenshot(path=str(artifacts / "guided-analytics.png"), full_page=True)
+                for width in widths:
+                    page.set_viewport_size({"width": width, "height": 1060})
+                    assert page.evaluate("document.documentElement.scrollWidth <= innerWidth"), width
+                page.locator("#guide-reset").click()
+                assert page.evaluate("demoRows.length") == 96
+                assert page.locator("#queue-count").inner_text() == "96"
+                page.goto(url.replace("case-study/", "demo/"), wait_until="networkidle")
+                assert page.locator("#guided-demo").is_hidden()
+                assert page.locator("#guide-launch").is_visible()
                 assert errors == [], errors
                 assert failed_resources == [], failed_resources
                 browser.close()
@@ -260,6 +303,7 @@ def main():
                 "keyboard_tabs_menu_dialog_focus": "passed",
                 "reduced_motion": "passed",
                 "existing_demo": "passed",
+                "guided_request_assignment_response_resolution_metrics_reset": "passed",
                 "atlas_filters_16_diagrams_zoom_focus": "passed",
                 "javascript_errors": errors,
                 "failed_resources": failed_resources,
