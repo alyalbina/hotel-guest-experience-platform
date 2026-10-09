@@ -10,7 +10,7 @@ The case study traces guest-service research through product decisions, service/
 
 **[Explore the 16-diagram Research & Analysis Atlas](https://alyalbina.github.io/hotel-guest-experience-platform/case-study/artifacts/)** · [Research deep dive](docs/research-deep-dive.md) · [Evidence → requirements → verification](docs/research-traceability.md). Inspect the full CJM and Blueprint, original affinity groups, Fishbone, stakeholders, AS-IS / TO-BE, FURPS+, seven current UML views and the ERD. Each model identifies its thesis source, decision and evidence boundary.
 
-> The live demo is available on GitHub Pages. No Python, account or API key is needed. It uses synthetic data; edits exist only in the current tab and reset on refresh. For an offline preview, download the repository and open **`OPEN_DEMO.html`**.
+> The live demo is available on GitHub Pages. No Python, account or API key is needed. [Follow one request in about 90 seconds](https://alyalbina.github.io/hotel-guest-experience-platform/demo/?tour=request), then explore freely. It uses synthetic data; edits exist only in the current tab and reset on refresh. The walkthrough has explicitly scripted timestamps. For an offline preview, download the repository and open **`OPEN_DEMO.html`**.
 
 ![Staff request inbox using synthetic data](docs/screenshots/inbox.png)
 
@@ -133,4 +133,4 @@ Hotel SSO/PMS verification, retention/deletion processes, proactive guest notifi
 
 ## Documentation & Portfolio
 
-[Documentation index](docs/README.md) · [User stories](docs/user-stories.md) · [Metrics & SQL](docs/metrics.md) · [CV / LinkedIn / interview material](docs/portfolio.md) · [Publishing instructions](docs/publishing.md).
+[Documentation index](docs/README.md) · [User stories](docs/user-stories.md) · [Decision tradeoffs](docs/decision-records.md) · [Analytical decision example](docs/analytics-case.md) · [Metrics & SQL](docs/metrics.md) · [CV / LinkedIn / interview material](docs/portfolio.md) · [Publishing instructions](docs/publishing.md).

@@ -16,7 +16,7 @@ def main():
         .replace("/static/", "")
     )
     (target / "index.html").write_text(html)
-    for name in ["style.css", "app.js", "demo-data.js"]:
+    for name in ["style.css", "app.js", "demo-data.js", "guide.css", "guide.js"]:
         shutil.copy2(source / name, target / name)
     (root / "docs/.nojekyll").touch()
     bundled = html.replace(
@@ -30,6 +30,13 @@ def main():
     bundled = bundled.replace(
         '<script src="app.js"></script>',
         "<script>" + (source / "app.js").read_text().replace("</script", "<\\/script") + "</script>",
+    )
+    bundled = bundled.replace(
+        '<link rel="stylesheet" href="guide.css">',
+        "<style>" + (source / "guide.css").read_text() + "</style>",
+    ).replace(
+        '<script src="guide.js"></script>',
+        "<script>" + (source / "guide.js").read_text().replace("</script", "<\\/script") + "</script>",
     )
     (root / "OPEN_DEMO.html").write_text(bundled)
     (root / "docs/index.html").write_text(

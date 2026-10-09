@@ -1,5 +1,13 @@
 # Product case study: design, evidence and quality report
 
+## Guided workflow and decision expansion — 9 October 2026
+
+The case now presents personal contribution immediately after the hero and adds three decision records with alternatives, limitations and reconsideration criteria. A side-by-side architecture comparison distinguishes the lost 2024 AppSheet prototype from the new staff workspace. [The analytical example](analytics-case.md) uses the generated 96-record cohort and explicitly separates unfinished work from closed-only SLA.
+
+The optional [guided demo](https://alyalbina.github.io/hotel-guest-experience-platform/demo/?tour=request) creates an extra fictional request, assigns housekeeping, acknowledges, progresses and resolves it through the preview's shared creation/update functions. Times are scripted; starting/restoring clears prior in-tab edits. It recalculates the actual cohort metrics and assigns no CSAT score.
+
+Local checks passed: 34 Python tests; Ruff; JavaScript syntax; public-tree publication gate; authenticated browser workflow; and case/atlas smoke. The expanded smoke verifies assignment does not set response, exact acknowledgement/resolution timestamps, five history events, analytics recalculation, reset to 96 records and ordinary-preview behavior. Case and guided analytics fit widths 320, 390, 768, 1024 and 1440 pixels. There were no JavaScript exceptions or failed local resources. Human usability and hotel impact remain untested.
+
 Validation date: 8 October 2026 (UTC). This report covers the new static portfolio page and regression checks on the existing product.
 
 **Case study:** https://alyalbina.github.io/hotel-guest-experience-platform/case-study/  

@@ -16,11 +16,13 @@ This documentation separates 2024 thesis evidence from the 2026 reconstruction. 
 | [Requirements](requirements.md) | FURPS+ requirements and traceability |
 | [Processes](processes.md) | AS-IS and original/current TO-BE |
 | [Architecture](architecture.md) | Current components and technology tradeoffs |
+| [Three decision records](decision-records.md) | Alternatives, costs, checks and triggers for reconsideration |
 | [UML](uml.md) | Seven editable UML sources and GitHub-readable views |
 | [Data model](data-model.md) | Original/current ERD, dictionary and constraints |
 | [Customer journey](customer-journey.md) | Reconstructed journey and product scope |
 | [Service Blueprint](service-blueprint.md) | Frontstage, backstage and support layers |
 | [Metrics](metrics.md) | Definitions, denominators, SQL and pilot design |
+| [Analytical decision example](analytics-case.md) | Synthetic SQL result → interpretation → proposed action → validation |
 | [Roadmap](roadmap.md) | Priorities, dependencies and release boundaries |
 | [Migration](migration.md) | aiogram 2-to-3 and data/integration compatibility |
 | [Setup](setup.md) | Reproducible local setup and external configuration |

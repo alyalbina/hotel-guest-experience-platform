@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" data-preview="true">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Guestflow · Hotel service operations</title><link rel="stylesheet" href="style.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Guestflow · Hotel service operations</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="guide.css"></head>
 <body>
 <section id="login-view" class="login-wrap" hidden><div class="login-card"><div class="brand-mark">g.</div><p class="eyebrow">HOTEL GUEST EXPERIENCE PLATFORM</p><h1>Welcome to Guestflow.</h1><p class="muted">A shared workspace for better guest service.</p><form id="login-form"><label>Username<input id="username" autocomplete="username" required></label><label>Password<input id="password" type="password" autocomplete="current-password" required></label><button class="primary" type="submit">Sign in</button></form><p id="login-note" class="small muted"></p><p id="login-error" role="alert" class="error"></p></div></section>
 <div id="workspace" class="workspace" hidden>
@@ -17,5 +17,5 @@
 </div></main></div>
 <div id="drawer-overlay" class="overlay" hidden></div><aside id="detail-drawer" class="drawer" aria-label="Request details" hidden><button id="close-drawer" class="close" aria-label="Close request details">×</button><div id="detail-content"></div></aside>
 <dialog id="create-dialog"><form id="create-form"><div class="dialog-header"><div><p class="eyebrow">RECEPTION WORKSPACE</p><h2>Create a guest request</h2></div><button type="button" id="close-create" class="close" aria-label="Close new request">×</button></div><label>Guest<select id="create-guest" required></select></label><label>Category<select id="create-category" required></select></label><label>Service<select id="create-service" required></select></label><label>Request details<textarea id="create-detail" required maxlength="1000" rows="4" placeholder="Timing, quantity and preferences"></textarea></label><p class="small muted">Demo mode: use fictional information only.</p><button type="submit" class="primary">Save request</button></form></dialog>
-<script src="demo-data.js"></script><script src="app.js"></script>
+<script src="demo-data.js"></script><script src="app.js"></script><script src="guide.js"></script>
 </body></html>
