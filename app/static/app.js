@@ -96,17 +96,25 @@ function renderDetail() {
  $("detail-content").innerHTML=`<p class="eyebrow">REQUEST / ${esc(r.id)}</p><h2>${esc(r.service)}</h2>${pill(r.status)}<div class="detail-info"><div><small>GUEST / ROOM</small>${esc(r.guest_name)} · ${esc(r.room)}</div><div><small>DEPARTMENT</small>${esc(r.department_name)}</div><div><small>CREATED · UTC</small>${when(r.created_at)}</div><div><small>DEMO SLA</small>${r.sla_minutes} minutes</div></div><h3 class="small">Request details</h3><p class="detail-description">${esc(r.detail)}</p>${write?`<form id="detail-form" class="detail-form"><label>Responsible employee<select id="assign-select"><option value="">Unassigned</option>${staff.map(s=>`<option value="${s.id}"${r.assigned_to===s.id?" selected":""}>${esc(s.name)}</option>`).join("")}</select></label><button type="button" id="assign-button" class="ghost">Save assignment</button><label>Next status<select id="next-status"><option value="">Choose a transition</option>${(transitions[r.status]||[]).map(s=>`<option value="${s}">${labels[s]}</option>`).join("")}</select></label><label>Note / reason<textarea id="change-note" rows="3" maxlength="500" placeholder="Reason required for reopening or cancellation"></textarea></label><div class="actions"><button type="submit" class="primary">Save update</button></div></form>`:'<p class="muted small">Analyst access · read-only</p>'}<h3 class="small">Request history <span class="tag">${r.events.length}</span></h3><div class="timeline">${[...r.events].reverse().map(e=>`<div class="event"><strong>${esc(e.action.replaceAll("_"," "))}${e.to_status?" → "+esc(labels[e.to_status]):""}</strong><small>${when(e.occurred_at)} UTC · ${esc(e.actor_name||"Guest / system")}</small>${e.note?`<p>${esc(e.note)}</p>`:""}</div>`).join("")}</div><p class="small muted">Record version ${r.version} · changes are checked for conflicts.</p>`;
  if(write){$("assign-button").onclick=()=>updateRequest({assigned_to:$("assign-select").value?Number($("assign-select").value):null});$("detail-form").onsubmit=e=>{e.preventDefault();const payload={note:$("change-note").value};if($("next-status").value)payload.status=$("next-status").value;updateRequest(payload);};}
 }
-async function updateRequest(payload) {
+async function updateRequest(payload, previewTime="2026-10-08T18:00:00Z") {
  try {
   if(preview) {
-   const r=demoRows.find(x=>x.id===current.id),now="2026-10-08T18:00:00Z",note=(payload.note||"").trim();
+   const r=demoRows.find(x=>x.id===current.id),now=previewTime,note=(payload.note||"").trim();
    if(payload.status){if(!transitions[r.status].includes(payload.status))throw new Error("Invalid transition");if(["reopened","cancelled"].includes(payload.status)&&!note)throw new Error("Add a reason for reopening or cancellation.");const old=r.status;r.status=payload.status;r.responded_at=r.responded_at||(payload.status!=="cancelled"?now:null);r.resolved_at=payload.status==="resolved"?now:null;r.first_resolved_at=r.first_resolved_at||r.resolved_at;if(payload.status==="reopened"){r.reopen_count++;r.csat=null;}r.events.push({action:"status_changed",to_status:payload.status,from_status:old,note,occurred_at:now,actor_name:"Demo Manager"});}
    else if("assigned_to" in payload){r.assigned_to=payload.assigned_to;r.assignee_name=catalog.staff.find(s=>s.id===r.assigned_to)?.name||null;r.events.push({action:"assigned",note:`Employee ID: ${r.assigned_to??"unassigned"}`,occurred_at:now,actor_name:"Demo Manager"});}
    else {if(!note)throw new Error("Choose a status or add a note.");r.events.push({action:"note",note,occurred_at:now,actor_name:"Demo Manager"});}
    r.version++;current=structuredClone(r);
   } else current=await api("requests/"+current.id,{method:"PATCH",body:JSON.stringify({version:current.version,...payload})});
-  renderDetail();await refresh();notify(preview?"Preview updated. Changes stay in this tab and reset when refreshed.":"Request saved. History updated.");
- }catch(error){notify(error.message,true);if(!preview&&current)await openRequest(current.id);}
+  renderDetail();await refresh();notify(preview?"Preview updated. Changes stay in this tab and reset when refreshed.":"Request saved. History updated.");return true;
+ }catch(error){notify(error.message,true);if(!preview&&current)await openRequest(current.id);return false;}
+}
+function createPreviewRequest(payload, created="2026-10-08T18:00:00Z", rid="preview-"+crypto.randomUUID().slice(0,8)) {
+ if(!preview)throw new Error("Preview creation is unavailable in the full app.");
+ const guest=catalog.guests.find(g=>g.id===payload.guest_id),cat=catalog.categories.find(c=>c.id===payload.category),dep=catalog.departments.find(d=>d.id===cat?.department);
+ if(!guest||!cat||!dep||!cat.services.includes(payload.service)||!payload.detail?.trim())throw new Error("Check the guest, service and request details.");
+ if(demoRows.some(r=>r.id===rid))throw new Error("Request ID already exists.");
+ demoRows.unshift({id:rid,guest_id:guest.id,guest_name:guest.name,room:guest.room_id,category_id:cat.id,category_name:cat.name,department_id:dep.id,department_name:dep.name,service:payload.service,detail:payload.detail.trim(),status:"new",created_at:created,responded_at:null,resolved_at:null,first_resolved_at:null,reopen_count:0,csat:null,assigned_to:null,assignee_name:null,sla_minutes:dep.sla_minutes,version:1,events:[{action:"created",to_status:"new",note:"Fictional preview request",occurred_at:created}]});
+ return rid;
 }
 function closeDrawer() {$("detail-drawer").hidden=true;$("drawer-overlay").hidden=true;current=null;}
 function loadCatalog() {
@@ -134,7 +142,7 @@ $("show-more").onclick=()=>{displayLimit+=12;render();};$("close-drawer").onclic
 $("new-request").onclick=()=>$("create-dialog").showModal();$("close-create").onclick=()=>$("create-dialog").close();$("create-category").onchange=updateServices;
 $("create-form").onsubmit=async e=>{e.preventDefault();try{
  const payload={guest_id:Number($("create-guest").value),category:$("create-category").value,service:$("create-service").value,detail:$("create-detail").value.trim()};if(!payload.detail)throw new Error("Add request details.");let rid;
- if(preview){const guest=catalog.guests.find(g=>g.id===payload.guest_id),cat=catalog.categories.find(c=>c.id===payload.category),dep=catalog.departments.find(d=>d.id===cat.department),created="2026-10-08T18:00:00Z";rid="preview-"+crypto.randomUUID().slice(0,8);demoRows.unshift({id:rid,guest_id:guest.id,guest_name:guest.name,room:guest.room_id,category_id:cat.id,category_name:cat.name,department_id:dep.id,department_name:dep.name,service:payload.service,detail:payload.detail,status:"new",created_at:created,responded_at:null,resolved_at:null,first_resolved_at:null,reopen_count:0,csat:null,assigned_to:null,assignee_name:null,sla_minutes:dep.sla_minutes,version:1,events:[{action:"created",to_status:"new",note:"Fictional preview request",occurred_at:created}]});}
+ if(preview)rid=createPreviewRequest(payload);
  else{const r=await api("requests",{method:"POST",body:JSON.stringify(payload)});rid=r.id;}
  $("create-dialog").close();$("create-detail").value="";await refresh();await openRequest(rid);notify("New request saved.");
  }catch(error){notify(error.message,true);}};
