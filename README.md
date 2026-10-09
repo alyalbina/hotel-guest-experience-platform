@@ -30,7 +30,7 @@ There are two demos: an interactive browser-only preview with fictional data, an
 
 **Thesis, 2024 — Albina Urubkina:** guest-experience research, service-design artifacts, stakeholder and process analysis, requirements, system/data-model design and development of the integrated prototype case.
 
-**Portfolio rebuild, 2026:** reconstruction of documented staff workflows, a new web panel, explicit state/event model, analytics definitions, synthetic data, automated checks and English documentation. The implementation was rebuilt with AI engineering assistance. The preserved original bot credits `@d_chistikov`; this repository does not claim sole authorship of the original Python implementation. See [provenance](docs/provenance.md).
+**Portfolio rebuild, 2026:** reconstruction of documented staff workflows, a new web panel, explicit state/event model, analytics definitions, synthetic data, automated checks and English documentation. The implementation was rebuilt with AI engineering assistance. See [provenance](docs/provenance.md).
 
 ## Research & Key Insights
 

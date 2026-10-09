@@ -28,7 +28,7 @@ HSE University thesis, 2024; AI-assisted portfolio reconstruction, 2026
 
 A hospitality product case originating in my 2024 Business Informatics thesis at HSE University. The research reports 182 completed questionnaires and qualitative guest-experience work. I connected service problems with CJM, Service Blueprint, requirements, UX flows and system models.
 
-The 2026 AI-assisted reconstruction replaces the lost AppSheet workflow with a demonstrable staff workspace and adds SQL-backed operational metrics. The interactive case shows how findings informed product decisions. Demo data is synthetic; no production hotel rollout or measured business improvement is claimed. Original coding attribution is retained in the provenance record.
+The 2026 AI-assisted reconstruction replaces the lost AppSheet workflow with a demonstrable staff workspace and adds SQL-backed operational metrics. The interactive case shows how findings informed product decisions. Demo data is synthetic; no production hotel rollout or measured business improvement is claimed.
 
 ### Longer entry and role-specific positioning
 

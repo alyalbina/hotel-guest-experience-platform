@@ -32,7 +32,7 @@ The full thesis, original configuration, deployment service file, credentials an
 
 ## Personal contribution claims
 
-Albina is the thesis author and may present its research, service-design work, business/system analysis and prototype project. A handler in C1 credits `@d_chistikov` as the bot developer. The surviving files do not resolve the complete division of coding work. We preserve that attribution here rather than publish the person's identifiers throughout application code.
+Albina is the thesis author and may present its research, service-design work, business/system analysis and prototype project. The surviving files do not resolve the complete division of original coding work.
 
 The new implementation is a clean rebuild with AI engineering assistance, guided by the original thesis and source. It should be presented as a reconstruction/extension, not as code independently written in 2024. Before using a CV statement about personally coding the original bot, confirm the actual contribution history.
 
