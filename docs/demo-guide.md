@@ -1,5 +1,16 @@
 # Demo script and walkthrough
 
+## One request in about 90 seconds
+
+Open [the guided public demo](https://alyalbina.github.io/hotel-guest-experience-platform/demo/?tour=request). The intro leaves the original 96 records untouched. Click Start to restore the baseline and create `tour-001`, a fictional extra-towels request.
+
+1. Assign housekeeping. Explain that assignment does not count as a human response.
+2. Acknowledge, then start fulfillment. Inspect the request history if desired; close it to continue.
+3. Record resolution, then open the analytical effect. Compare the original cohort with one extra resolved request.
+4. Restore 96 records to clear the walkthrough, or close the guide and freely explore.
+
+The guide uses a **scripted clock** on 8 October 2026: created 17:40, assigned 17:41, acknowledged 17:42, in progress 17:44, resolved 17:52 UTC. Its two-minute response and 12-minute resolution are assigned fictional intervals, not time measured from clicks or hotel outcomes. No CSAT rating is fabricated. The offline `OPEN_DEMO.html` includes the same optional guide.
+
 ## Recruiter walkthrough: about three minutes
 
 1. Open the public preview or `OPEN_DEMO.html`. Explain that all operations are synthetic and preview edits reset on refresh.
