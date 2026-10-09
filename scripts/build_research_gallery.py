@@ -958,6 +958,8 @@ ARTIFACTS = [
 
 def build():
     cards = []
+    previews = ROOT / "docs/case-study/assets"
+    previews.mkdir(parents=True, exist_ok=True)
     for i, (key, group, title, status, source, render, shows, decision, boundary, doc) in enumerate(
         ARTIFACTS, 1
     ):
@@ -965,6 +967,12 @@ def build():
         diagram = (
             render().replace('id="arrow"', f'id="arrow-{key}"').replace("url(#arrow)", f"url(#arrow-{key})")
         )
+        if key in {"journey", "blueprint", "state"}:
+            # Reuse the real atlas model, rather than drawing decorative pseudo-diagrams.
+            standalone = diagram.replace(
+                "<svg xmlns=", '<svg style="font-family:Arial,Helvetica,sans-serif" xmlns=', 1
+            )
+            (previews / f"{key}.svg").write_text(standalone + "\n", encoding="utf-8")
         cards.append(f'''<article id="{key}" class="artifact" data-group="{group}">
           <header><p class="eyebrow">{i:02} / {group.upper()}</p><h2>{escape(title)}</h2><p class="artifact-meta"><span>{escape(status)}</span><span>T1 / {escape(source)}</span></p></header>
           <button class="diagram-preview" data-diagram="{key}" aria-label="Enlarge {escape(title)} diagram">{diagram}<span class="diagram-hint">Inspect diagram ↗</span></button>
@@ -976,7 +984,7 @@ def build():
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Sixteen service-design and system-analysis diagrams from Albina Urubkina's hotel product case, with thesis sources, decisions and evidence limits.">
 <title>Research &amp; Analysis Atlas · Albina Urubkina</title>
-<link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="atlas.css"><link rel="icon" href="../favicon.svg" type="image/svg+xml"><script src="atlas.js" defer></script></head>
+<link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="atlas.css"><link rel="stylesheet" href="../design.css"><link rel="icon" href="../favicon.svg" type="image/svg+xml"><script src="atlas.js" defer></script></head>
 <body><a class="skip-link" href="#main">Skip to artifacts</a>
 <header class="atlas-header"><a class="wordmark" href="../">AU<span>Albina Urubkina</span></a><nav aria-label="Atlas navigation"><a href="../">Back to case</a><a href="../../demo/">Try the product ↗</a></nav></header>
 <main id="main" class="wrap"><section class="atlas-intro"><p class="eyebrow">THE RESEARCH &amp; ANALYSIS ATLAS</p><h1>The work behind<br>the workspace.</h1><p class="atlas-lead">Sixteen models. One thread from guest experience to operational requirements and a demonstrable product.</p><p>HSE University thesis, 2024 / English reconstructions and current-system views, 2026.</p>
