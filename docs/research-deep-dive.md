@@ -89,7 +89,7 @@ The original UML already describes rich request states, authorization, notificat
 
 ## 9. Contribution and an interview reading path
 
-Albina's thesis contribution includes research, synthesis, service design, stakeholder/process analysis, requirements, UX/system models and prototype-project coordination. The original bot credits another developer, and the 2026 rebuild uses AI engineering assistance; see [provenance](provenance.md).
+Albina's thesis contribution includes research, synthesis, service design, stakeholder/process analysis, requirements, UX/system models and prototype-project coordination. The 2026 rebuild uses AI engineering assistance; see [provenance](provenance.md).
 
 For a Business Analyst interview, show AS-IS, stakeholder roles and a requirement with acceptance criteria. For Product / UX interviews, show one affinity theme, the relevant CJM moment and a scope decision. For Product Analytics, explain why historical satisfaction research cannot be compared directly with synthetic operational metrics, then show the metric denominator and pilot design. These are different readings of the same evidence, not different versions of the result.
 

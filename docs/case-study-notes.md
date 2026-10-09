@@ -31,7 +31,7 @@ Interactive elements include four finding-to-decision explanations, four service
 | Finding → hypothesis → decision → expected outcome | [PRD](prd.md), [BRD](brd.md), [processes](processes.md); the causal trace is an editorial reconstruction, not a tested causal effect. |
 | CJM, Blueprint, process views, architecture | English reconstructions supported by existing [CJM](customer-journey.md), [Blueprint](service-blueprint.md), [architecture](architecture.md), [ERD](data-model.md) and [UML](uml.md). Not claimed to be surviving original diagram files. |
 | Product screenshots | Actual reconstructed web application. The guest flow is explicitly a representation, not a captured live Telegram conversation. |
-| 2024 and 2026 contribution | [Provenance](provenance.md); original bot attribution is retained, and the rebuild names AI engineering assistance. |
+| 2024 and 2026 contribution | [Provenance](provenance.md); thesis research and design contributions are separated from the AI-assisted 2026 rebuild. |
 | Hotel impact | Hypotheses only. No production rollout, financial gain or measured guest improvement is claimed. |
 
 ## Synthetic analytics
